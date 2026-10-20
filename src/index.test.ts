@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import app from './index';
-import { db } from './db';
+import app from './index.js';
+import { db } from './db/index.js';
 
 vi.mock('./db', () => ({
   db: {

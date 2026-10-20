@@ -1,11 +1,11 @@
-import { pgTable, serial, varchar, text, timestamp } from 'drizzle-orm/pg-core';
+import { mysqlTable, int, varchar, text, timestamp } from 'drizzle-orm/mysql-core';
 import type { InferSelectModel, InferInsertModel } from 'drizzle-orm';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
-// 1. Drizzle Schema
-export const leads = pgTable('leads', {
-  id: serial('id').primaryKey(),
+// 1. MySQL Drizzle Table Schema
+export const leads = mysqlTable('leads', {
+  id: int('id').autoincrement().primaryKey(),
   firstName: varchar('first_name', { length: 100 }).notNull(),
   lastName: varchar('last_name', { length: 100 }).notNull(),
   email: varchar('email', { length: 255 }).notNull().unique(),
@@ -20,7 +20,7 @@ export const leads = pgTable('leads', {
 export type Lead = InferSelectModel<typeof leads>;
 export type NewLead = InferInsertModel<typeof leads>;
 
-// 3. Zod Schemas generated from Drizzle Schema
+// 3. Zod Schemas
 export const selectLeadSchema = createSelectSchema(leads);
 
 export const insertLeadSchema = createInsertSchema(leads, {

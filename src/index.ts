@@ -1,24 +1,23 @@
-import { Hono } from 'hono';
-import { zValidator } from '@hono/zod-validator';
-import { z } from 'zod';
-import type { ZodError } from 'zod';
-import { db } from './db/index.js';
-import { leads, insertLeadSchema } from './db/schema.js';
-import { eq } from 'drizzle-orm';
+import { Hono } from "hono";
+import { zValidator } from "@hono/zod-validator";
+import { z } from "zod";
+import type { ZodError } from "zod";
+import { db } from "./db/index.js";
+import { leads, insertLeadSchema } from "./db/schema.js";
+import { eq } from "drizzle-orm";
 
 export const app = new Hono();
 
-// Custom Zod validation hook for predictable error payloads
-const validate = (target: 'json' | 'param', schema: z.ZodSchema) =>
+const validate = (target: "json" | "param", schema: z.ZodSchema) =>
   zValidator(target, schema, (result, c) => {
     if (!result.success) {
       const zodError = result.error as ZodError;
       return c.json(
         {
-          error: 'Validation failed',
+          error: "Validation failed",
           issues: zodError.flatten().fieldErrors,
         },
-        400
+        400,
       );
     }
   });
@@ -28,21 +27,32 @@ const idParamSchema = z.object({
 });
 
 // POST /leads
-app.post('/leads', validate('json', insertLeadSchema), async (c) => {
-  const body = c.req.valid('json') as z.infer<typeof insertLeadSchema>;
-  const result = await db.insert(leads).values(body).returning();
-  return c.json(result[0], 201);
+app.post("/leads", validate("json", insertLeadSchema), async (c) => {
+  const body = c.req.valid("json") as z.infer<typeof insertLeadSchema>;
+
+  // Execute MySQL insert
+  const [result] = await db.insert(leads).values(body);
+
+  // Extract insertId safely from object or array
+  const insertId = Array.isArray(result) ? result[0].insertId : result.insertId;
+
+  // Query the created lead using insertId
+  const newLead = await db.query.leads.findFirst({
+    where: eq(leads.id, insertId),
+  });
+
+  return c.json(newLead, 201);
 });
 
 // GET /leads/:id
-app.get('/leads/:id', validate('param', idParamSchema), async (c) => {
-  const { id } = c.req.valid('param') as z.infer<typeof idParamSchema>;
+app.get("/leads/:id", validate("param", idParamSchema), async (c) => {
+  const { id } = c.req.valid("param") as z.infer<typeof idParamSchema>;
 
   const lead = await db.query.leads.findFirst({
     where: eq(leads.id, id),
   });
 
-  if (!lead) return c.json({ error: 'Lead not found' }, 404);
+  if (!lead) return c.json({ error: "Lead not found" }, 404);
 
   return c.json(lead);
 });

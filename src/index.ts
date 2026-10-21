@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
+import { cors } from 'hono/cors';
 import type { ZodError } from "zod";
 import { db } from "./db/index.js";
 import { leads, insertLeadSchema } from "./db/schema.js";
@@ -25,6 +26,19 @@ const validate = (target: "json" | "param", schema: z.ZodSchema) =>
 const idParamSchema = z.object({
   id: z.coerce.number().int().positive(),
 });
+
+app.use(
+  '/*',
+  cors({
+    origin: [
+      'https://chocolate-dragonfly-117105.hostingersite.com',
+      'http://localhost:3000', // helpful if you still test locally
+    ],
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
 
 // POST /leads
 app.post("/leads", validate("json", insertLeadSchema), async (c) => {

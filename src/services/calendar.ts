@@ -44,6 +44,9 @@ export async function getAvailableSlots(
     console.log('[Calendar Debug] Query Range:', { timeMin, timeMax });
 
     const auth = new google.auth.GoogleAuth({
+      clientOptions: {
+        subject: 'admin@uzerobelize.com', // Your Google Workspace email
+      },
       scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
     });
     const calendar = google.calendar({ version: "v3", auth });

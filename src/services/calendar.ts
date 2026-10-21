@@ -39,6 +39,10 @@ export async function getAvailableSlots(
   const calendarId = process.env.GOOGLE_CALENDAR_ID || "primary";
 
   if (process.env.USE_MOCK_CALENDAR !== "true") {
+    console.log('[Calendar Debug] Fetching live Google Calendar freebusy data...');
+    console.log('[Calendar Debug] Target Calendar ID:', calendarId);
+    console.log('[Calendar Debug] Query Range:', { timeMin, timeMax });
+
     const auth = new google.auth.GoogleAuth({
       scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
     });
@@ -54,6 +58,11 @@ export async function getAvailableSlots(
     });
 
     // 3. Access busy ranges dynamically using the calendarId key
+    console.log(
+      '[Calendar Debug] Raw Busy Ranges from Google:',
+      JSON.stringify(busyRanges, null, 2)
+    );
+
     busyRanges = freebusy.data.calendars?.[calendarId]?.busy || [];
   }
 

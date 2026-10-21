@@ -35,7 +35,7 @@ app.use(
       'http://localhost:3000', // helpful if you still test locally
     ],
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowHeaders: ['Content-Type', 'Authorization'],
+    allowHeaders: ['Content-Type', /*'Authorization'*/],
     credentials: true,
   })
 );

@@ -1,6 +1,5 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import { serve } from '@hono/node-server';
 import { z } from "zod";
 import { cors } from 'hono/cors';
 import type { ZodError } from "zod";
@@ -44,39 +43,90 @@ const idParamSchema = z.object({
 
 // POST /leads
 app.post("/leads", validate("json", insertLeadSchema), async (c) => {
+  console.log("\n--- START POST /leads ---");
+
+  // Step 1: Log the validated body from Hono
   const body = c.req.valid("json") as z.infer<typeof insertLeadSchema>;
+  console.log(
+    "[Step 1] Validated request body:",
+    JSON.stringify(body, null, 2),
+  );
 
-  // Execute MySQL insert
-  const [result] = await db.insert(leads).values({
-    firstName: body.firstName,
-    lastName: body.lastName,
-    email: body.email,
-    phone: body.phone,
-    status: body.status || 'new',
-    notes: body.notes,
-  });
+  try {
+    // Step 2: Prepare the exact object being passed to Drizzle
+    const insertPayload = {
+      firstName: body.firstName,
+      lastName: body.lastName,
+      email: body.email,
+      phone: body.phone,
+      status: body.status || "new",
+      notes: body.notes,
+    };
+    console.log(
+      "[Step 2] Prepared DB insert payload:",
+      JSON.stringify(insertPayload, null, 2),
+    );
 
-  // Extract insertId safely from object or array
-  const insertId = Array.isArray(result) ? result[0].insertId : result.insertId;
+    // Step 3: Attempt the DB insert
+    console.log("[Step 3] Executing db.insert()...");
+    const [result] = await db.insert(leads).values(insertPayload);
 
-  // Query the created lead using insertId
-  const newLead = await db.query.leads.findFirst({
-    where: eq(leads.id, insertId),
-  });
+    // Step 4: Log the raw result from MySQL
+    console.log("[Step 4] db.insert() successful. Raw result:", result);
 
-  if (!newLead) {
-    return c.json({ error: 'Failed to retrieve created lead' }, 500);
+    const insertId = (result as any).insertId;
+    console.log("[Step 5] Extracted insertId:", insertId);
+
+    if (!insertId) {
+      console.warn(
+        "[Warning] insertId is missing from the MySQL result object!",
+      );
+    }
+
+    // Step 6: Attempt to fetch the newly created record
+    console.log(
+      `[Step 6] Fetching newly created lead from DB with ID: ${insertId}...`,
+    );
+    const newLead = await db.query.leads.findFirst({
+      where: eq(leads.id, insertId),
+    });
+    console.log("[Step 7] Fetched lead from DB:", newLead);
+
+    if (!newLead) {
+      console.error(
+        "[Error] Failed to retrieve created lead with ID:",
+        insertId,
+      );
+      return c.json({ error: "Failed to retrieve created lead" }, 500);
+    }
+
+    // Step 8: Trigger notification
+    console.log("[Step 8] Triggering email notification...");
+    sendNewLeadNotification({
+      firstName: newLead.firstName,
+      lastName: newLead.lastName,
+      email: newLead.email,
+      phone: newLead.phone,
+      notes: newLead.notes,
+    });
+
+    console.log("--- END POST /leads SUCCESS ---\n");
+    return c.json(newLead, 201);
+  } catch (error) {
+    // Capture and log the exact failure point
+    console.error("\n!!! [FATAL ERROR] in POST /leads !!!");
+    console.error("[Error Name]:", (error as Error).name);
+    console.error("[Error Message]:", (error as Error).message);
+    console.error("[Full Error Object]:", error);
+
+    return c.json(
+      {
+        error: "Database operation failed",
+        details: (error as Error).message,
+      },
+      500,
+    );
   }
-
-  sendNewLeadNotification({
-    firstName: newLead.firstName,
-    lastName: newLead.lastName,
-    email: newLead.email,
-    phone: newLead.phone,
-    notes: newLead.notes,
-  });
-
-  return c.json(newLead, 201);
 });
 
 // GET /leads/:id

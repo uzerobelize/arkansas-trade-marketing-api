@@ -1,0 +1,83 @@
+import { google } from "googleapis";
+
+const WORKING_HOURS = { start: 8, end: 17 };
+const SLOT_DURATION_MIN = 30;
+const BUFFER_MIN = 15;
+const MIN_NOTICE_HOURS = 4;
+
+export async function getAvailableSlots(
+  dateStr: string,
+  timezone: string = "UTC",
+) {
+  const slots: Date[] = [];
+  const [year, month, day] = dateStr.split("-").map(Number);
+
+  const tzOffsetHours =
+    timezone === "CST" || timezone === "America/Chicago" ? -6 : 0;
+
+  for (let hour = WORKING_HOURS.start; hour < WORKING_HOURS.end; hour++) {
+    for (const min of [0, 30]) {
+      const utcTimestamp = Date.UTC(
+        year,
+        month - 1,
+        day,
+        hour - tzOffsetHours,
+        min,
+        0,
+        0,
+      );
+      slots.push(new Date(utcTimestamp));
+    }
+  }
+
+  const timeMin = slots[0].toISOString();
+  const timeMax = slots[slots.length - 1].toISOString();
+
+  let busyRanges: Array<{ start?: string | null; end?: string | null }> = [];
+
+  // 1. Resolve Calendar ID from environment variable
+  const calendarId = process.env.GOOGLE_CALENDAR_ID || "primary";
+
+  if (process.env.USE_MOCK_CALENDAR !== "true") {
+    const auth = new google.auth.GoogleAuth({
+      scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
+    });
+    const calendar = google.calendar({ version: "v3", auth });
+
+    // 2. Query freebusy for the specific calendarId
+    const freebusy = await calendar.freebusy.query({
+      requestBody: {
+        timeMin,
+        timeMax,
+        items: [{ id: calendarId }],
+      },
+    });
+
+    // 3. Access busy ranges dynamically using the calendarId key
+    busyRanges = freebusy.data.calendars?.[calendarId]?.busy || [];
+  }
+
+  const now = new Date();
+  const noticeThreshold = new Date(
+    now.getTime() + MIN_NOTICE_HOURS * 60 * 60 * 1000,
+  );
+
+  const availableSlots = slots.filter((slot) => {
+    if (slot < noticeThreshold) return false;
+
+    const slotStart = slot.getTime();
+    const slotEnd = slotStart + SLOT_DURATION_MIN * 60 * 1000;
+
+    const hasConflict = busyRanges.some((busy) => {
+      if (!busy.start || !busy.end) return false;
+
+      const busyStart = new Date(busy.start).getTime() - BUFFER_MIN * 60 * 1000;
+      const busyEnd = new Date(busy.end).getTime() + BUFFER_MIN * 60 * 1000;
+      return slotStart < busyEnd && slotEnd > busyStart;
+    });
+
+    return !hasConflict;
+  });
+
+  return availableSlots.map((slot) => slot.toISOString());
+}

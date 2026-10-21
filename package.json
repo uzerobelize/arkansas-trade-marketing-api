@@ -17,6 +17,7 @@
     "dotenv": "^18.0.8",
     "drizzle-orm": "^0.45.4",
     "drizzle-zod": "^0.8.3",
+    "googleapis": "^187.0.0",
     "hono": "^4.13.13",
     "mysql2": "^3.24.6",
     "resend": "^6.34.1",
@@ -24,6 +25,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@types/gapi.calendar": "^3.0.11",
     "@types/node": "^26.6.5",
     "drizzle-kit": "^0.31.11",
     "tsx": "^4.23.15",

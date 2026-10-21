@@ -5,6 +5,7 @@ import { cors } from 'hono/cors';
 import type { ZodError } from "zod";
 import { db } from "./db/index.js";
 import { sendNewLeadNotification } from './services/email.js';
+import { getAvailableSlots } from "./services/calendar.js";
 import { leads, insertLeadSchema } from "./db/schema.js";
 import { eq } from "drizzle-orm";
 
@@ -40,6 +41,27 @@ const validate = (target: "json" | "param", schema: z.ZodSchema) =>
 const idParamSchema = z.object({
   id: z.coerce.number().int().positive(),
 });
+
+const availabilityQuerySchema = z.object({
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Must be YYYY-MM-DD"),
+  timezone: z.string().default("America/Chicago"),
+});
+
+app.get(
+  "/api/availability",
+  zValidator("query", availabilityQuerySchema),
+  async (c) => {
+    const { date, timezone } = c.req.valid("query");
+
+    try {
+      const slots = await getAvailableSlots(date, timezone);
+      return c.json({ date, timezone, availableSlots: slots });
+    } catch (error) {
+      console.error("Availability Error:", error);
+      return c.json({ error: "Failed to fetch availability" }, 500);
+    }
+  },
+);
 
 // POST /leads
 app.post("/leads", validate("json", insertLeadSchema), async (c) => {

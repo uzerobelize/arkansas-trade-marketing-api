@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
+import { serve } from '@hono/node-server';
 import { z } from "zod";
 import { cors } from 'hono/cors';
 import type { ZodError } from "zod";
@@ -8,6 +9,19 @@ import { leads, insertLeadSchema } from "./db/schema.js";
 import { eq } from "drizzle-orm";
 
 export const app = new Hono();
+
+app.use(
+  '/*',
+  cors({
+    origin: [
+      'https://chocolate-dragonfly-117105.hostingersite.com',
+      'http://localhost:3000',
+    ],
+    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
 
 const validate = (target: "json" | "param", schema: z.ZodSchema) =>
   zValidator(target, schema, (result, c) => {
@@ -26,19 +40,6 @@ const validate = (target: "json" | "param", schema: z.ZodSchema) =>
 const idParamSchema = z.object({
   id: z.coerce.number().int().positive(),
 });
-
-app.use(
-  '/*',
-  cors({
-    origin: [
-      'https://chocolate-dragonfly-117105.hostingersite.com',
-      'http://localhost:3000', // helpful if you still test locally
-    ],
-    allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowHeaders: ['Content-Type', /*'Authorization'*/],
-    credentials: true,
-  })
-);
 
 // POST /leads
 app.post("/leads", validate("json", insertLeadSchema), async (c) => {
@@ -69,6 +70,16 @@ app.get("/leads/:id", validate("param", idParamSchema), async (c) => {
   if (!lead) return c.json({ error: "Lead not found" }, 404);
 
   return c.json(lead);
+});
+
+// --- START THE SERVER IMMEDIATELY ---
+const port = Number(process.env.PORT) || 3000;
+
+serve({
+  fetch: app.fetch,
+  port,
+}, (info) => {
+  console.log(`Server is running on http://localhost:${info.port}`);
 });
 
 export default app;

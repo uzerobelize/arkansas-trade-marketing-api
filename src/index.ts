@@ -47,7 +47,14 @@ app.post("/leads", validate("json", insertLeadSchema), async (c) => {
   const body = c.req.valid("json") as z.infer<typeof insertLeadSchema>;
 
   // Execute MySQL insert
-  const [result] = await db.insert(leads).values(body);
+  const [result] = await db.insert(leads).values({
+    firstName: body.firstName,
+    lastName: body.lastName,
+    email: body.email,
+    phone: body.phone,
+    status: body.status || 'new',
+    notes: body.notes,
+  });
 
   // Extract insertId safely from object or array
   const insertId = Array.isArray(result) ? result[0].insertId : result.insertId;

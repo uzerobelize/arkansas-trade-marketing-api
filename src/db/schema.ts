@@ -13,7 +13,7 @@ export const leads = mysqlTable('leads', {
   status: varchar('status', { length: 50 }).default('new').notNull(),
   notes: text('notes'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
-  updatedAt: timestamp('updated_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at').defaultNow().onUpdateNow().notNull(),
 });
 
 // 2. TypeScript Types

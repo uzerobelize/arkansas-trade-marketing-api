@@ -54,6 +54,7 @@ app.post("/leads", validate("json", insertLeadSchema), async (c) => {
 
   try {
     // Step 2: Prepare the exact object being passed to Drizzle
+    const now = new Date();
     const insertPayload = {
       firstName: body.firstName,
       lastName: body.lastName,
@@ -61,6 +62,8 @@ app.post("/leads", validate("json", insertLeadSchema), async (c) => {
       phone: body.phone,
       status: body.status || "new",
       notes: body.notes,
+      createdAt: now,
+      updatedAt: now,
     };
     console.log(
       "[Step 2] Prepared DB insert payload:",
@@ -112,12 +115,17 @@ app.post("/leads", validate("json", insertLeadSchema), async (c) => {
 
     console.log("--- END POST /leads SUCCESS ---\n");
     return c.json(newLead, 201);
-  } catch (error) {
-    // Capture and log the exact failure point
-    console.error("\n!!! [FATAL ERROR] in POST /leads !!!");
-    console.error("[Error Name]:", (error as Error).name);
-    console.error("[Error Message]:", (error as Error).message);
-    console.error("[Full Error Object]:", error);
+  } catch (err) {
+    const error = err as any;
+
+    // Log the underlying MySQL driver error details
+    console.error("--- MYSQL DRIVER ERROR DETAILS ---");
+    console.error("Code:", error?.cause?.code || error?.code);
+    console.error(
+      "Message:",
+      error?.cause?.sqlMessage || error?.sqlMessage || error?.message,
+    );
+    console.error("Full Cause:", error?.cause);
 
     return c.json(
       {

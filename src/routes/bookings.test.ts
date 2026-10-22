@@ -37,6 +37,16 @@ describe("POST /api/bookings", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+
+    // Reset default DB mock behavior before each test
+    vi.mocked(db.insert).mockImplementation(
+      () =>
+        ({
+          values: vi.fn(() => ({
+            $returningId: vi.fn().mockResolvedValue([{ id: 1 }]),
+          })),
+        }) as any,
+    );
   });
 
   it("should successfully book an appointment and return 201", async () => {
@@ -61,6 +71,7 @@ describe("POST /api/bookings", () => {
       message: "Booking confirmed",
       bookingId: 1,
       meetLink: "https://meet.google.com/abc-defg-hij",
+      isDuplicate: false,
     });
 
     expect(createCalendarEvent).toHaveBeenCalledWith(validPayload);
@@ -71,6 +82,51 @@ describe("POST /api/bookings", () => {
         lastName: "Doe",
         email: "jane@example.com",
         status: "booked",
+      }),
+    );
+  });
+
+  it("should handle duplicate database entries gracefully and return 201", async () => {
+    vi.mocked(getAvailableSlots).mockResolvedValue([
+      "2026-10-28T15:00:00.000Z",
+    ]);
+    vi.mocked(createCalendarEvent).mockResolvedValue({
+      eventId: "google-event-123",
+      meetLink: "https://meet.google.com/abc-defg-hij",
+    });
+
+    // Mock DB to throw duplicate entry error
+    vi.mocked(db.insert).mockImplementationOnce(
+      () =>
+        ({
+          values: vi.fn(() => ({
+            $returningId: vi.fn().mockRejectedValue({ code: "ER_DUP_ENTRY" }),
+          })),
+        }) as any,
+    );
+
+    const res = await app.request("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(validPayload),
+    });
+
+    expect(res.status).toBe(201);
+    const json = await res.json();
+
+    // Verify duplicate handling payload
+    expect(json).toEqual({
+      message: "Booking confirmed for returning lead",
+      bookingId: null,
+      meetLink: "https://meet.google.com/abc-defg-hij",
+      isDuplicate: true,
+    });
+
+    // Verify email was still sent with updated status
+    expect(sendNewLeadNotification).toHaveBeenCalledWith(
+      expect.objectContaining({
+        email: "jane@example.com",
+        status: "returning_lead_booked",
       }),
     );
   });

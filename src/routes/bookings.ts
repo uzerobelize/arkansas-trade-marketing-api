@@ -41,7 +41,6 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
     const [firstName, ...lastNameParts] = data.name.trim().split(" ");
     const lastName = lastNameParts.join(" ");
 
-    // Combine optional company and notes into notes column if present
     const combinedNotes =
       [
         data.company ? `Company: ${data.company}` : null,
@@ -50,48 +49,68 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
         .filter(Boolean)
         .join(" | ") || null;
 
-    const now = new Date();
-    const [newLead] = await db
-      .insert(leads)
-      .values([
-        {
-          firstName: firstName,
-          lastName: lastName || "",
-          email: data.email,
-          phone: data.phone || "",
-          status: "new",
-          notes: combinedNotes,
-          createdAt: now,
-          updatedAt: now,
-        },
-      ])
-      .$returningId();
+    // 4. Attempt DB Insert with Duplicate Catch
+    let bookingId: number | null = null;
+    let isDuplicate = false;
 
-    // 4. Trigger Email Alert using LeadAlertPayload structure
+    try {
+      const [newLead] = await db
+        .insert(leads)
+        .values([
+          {
+            firstName,
+            lastName: lastName || "",
+            email: data.email,
+            phone: data.phone || null,
+            notes: combinedNotes,
+          },
+        ])
+        .$returningId();
+
+      bookingId = newLead.id;
+    } catch (insertError: any) {
+      const isDup =
+        insertError?.code === "ER_DUP_ENTRY" ||
+        insertError?.cause?.code === "ER_DUP_ENTRY";
+
+      if (isDup) {
+        console.warn(
+          `[Booking] Duplicate lead detected for email: ${data.email}. Skipping DB insert.`,
+        );
+        isDuplicate = true;
+      } else {
+        throw insertError; // Throw non-duplicate DB errors to the outer catch
+      }
+    }
+
+    // 5. Trigger Email Alert (Happens even if duplicate)
     await sendNewLeadNotification({
       firstName,
       lastName: lastName || "",
       email: data.email,
       phone: data.phone,
-      status: "booked",
+      status: isDuplicate ? "returning_lead_booked" : "booked",
       notes: `Company: ${data.company || "N/A"} | Time: ${data.startTime} | Meet Link: ${calendarEvent.meetLink}${data.notes ? ` | Notes: ${data.notes}` : ""}`,
     });
 
+    // 6. Return response to API user
     return c.json(
       {
-        message: "Booking confirmed",
-        bookingId: newLead.id,
+        message: isDuplicate
+          ? "Booking confirmed for returning lead"
+          : "Booking confirmed",
+        bookingId, // Will be null if duplicate
         meetLink: calendarEvent.meetLink,
+        isDuplicate,
       },
       201,
     );
-  } catch (error) {
-    const error = err as any;
-    console.error('[Booking Error]', error);
+  } catch (error: any) {
+    console.error("[Booking Error]", error);
     if (error?.cause) {
-      console.error('[Booking Cause Details]', error.cause);
+      console.error("[Booking Cause Details]", error.cause);
     }
-    return c.json({ error: 'Failed to process booking' }, 500);
+    return c.json({ error: "Failed to process booking" }, 500);
   }
 });
 

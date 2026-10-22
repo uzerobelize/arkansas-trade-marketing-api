@@ -45,9 +45,9 @@ export async function getAvailableSlots(
 
     const auth = new google.auth.GoogleAuth({
       clientOptions: {
-        subject: 'admin@uzerobelize.com', // Your Google Workspace email
+        subject: 'admin@uzerobelize.com',
       },
-      scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
+      scopes: ["https://www.googleapis.com/auth/calendar"],
     });
     const calendar = google.calendar({ version: "v3", auth });
 

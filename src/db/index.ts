@@ -25,6 +25,7 @@ const poolConnection = mysql.createPool({
     : 5,
   waitForConnections: true,
   queueLimit: 0,
+  timezone: '+00:00',
 
   // Uncomment the ssl block below if you are connecting remotely from your local machine
   // to Hostinger and they require a secure connection:

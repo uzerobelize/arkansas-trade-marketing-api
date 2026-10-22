@@ -50,7 +50,8 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
         .filter(Boolean)
         .join(" | ") || null;
 
-    const [newLead] = await db
+    const now = new Date();
+    const [result] = await db
       .insert(leads)
       .values([
         {
@@ -60,9 +61,12 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
           phone: data.phone || "",
           status: "new",
           notes: combinedNotes,
+          createdAt: now,
+          updatedAt: now,
         },
       ])
-      .$returningId();
+
+    const bookingId = (result as any).insertId;
 
     // 4. Trigger Email Alert using LeadAlertPayload structure
     await sendNewLeadNotification({
@@ -74,14 +78,11 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
       notes: `Company: ${data.company || "N/A"} | Time: ${data.startTime} | Meet Link: ${calendarEvent.meetLink}${data.notes ? ` | Notes: ${data.notes}` : ""}`,
     });
 
-    return c.json(
-      {
-        message: "Booking confirmed",
-        bookingId: newLead.id,
-        meetLink: calendarEvent.meetLink,
-      },
-      201,
-    );
+    return c.json({
+      message: 'Booking confirmed',
+      bookingId,
+      meetLink: calendarEvent.meetLink
+    }, 201);
   } catch (error) {
     console.error("[Booking Error]", error);
     return c.json({ error: "Failed to process booking" }, 500);

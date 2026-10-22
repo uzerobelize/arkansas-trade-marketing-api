@@ -16,7 +16,7 @@ app.use(
   '/*',
   cors({
     origin: [
-      'https://https://arkansastrademarketing.com',
+      'https://arkansastrademarketing.com',
       'http://localhost:3000',
       'http://localhost:5173',
     ],

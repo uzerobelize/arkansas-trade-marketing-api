@@ -50,21 +50,13 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
         .filter(Boolean)
         .join(" | ") || null;
 
-    const now = new Date();
-    const [result] = await db
-      .insert(leads)
-      .values([
-        {
-          firstName: firstName,
-          lastName: lastName || "",
-          email: data.email,
-          phone: data.phone || "",
-          status: "new",
-          notes: combinedNotes,
-          createdAt: now,
-          updatedAt: now,
-        },
-      ])
+    const [result] = await db.insert(leads).values([{
+      firstName,
+      lastName: lastName || '',
+      email: data.email,
+      phone: data.phone || null,
+      notes: combinedNotes,
+    }]);
 
     const bookingId = (result as any).insertId;
 
@@ -83,9 +75,13 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
       bookingId,
       meetLink: calendarEvent.meetLink
     }, 201);
-  } catch (error) {
-    console.error("[Booking Error]", error);
-    return c.json({ error: "Failed to process booking" }, 500);
+  } catch (err) {
+    const error = err as any;
+    console.error('[Booking Error]', error);
+    if (error?.cause) {
+      console.error('[Booking Cause Details]', error.cause);
+    }
+    return c.json({ error: 'Failed to process booking' }, 500);
   }
 });
 

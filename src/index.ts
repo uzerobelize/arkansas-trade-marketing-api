@@ -17,7 +17,8 @@ app.use(
   cors({
     origin: [
       'https://chocolate-dragonfly-117105.hostingersite.com',
-      'http://localhost',
+      'http://localhost:3000',
+      'http://localhost:5173',
     ],
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],

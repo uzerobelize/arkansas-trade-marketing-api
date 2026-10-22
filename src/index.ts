@@ -16,7 +16,7 @@ app.use(
   '/*',
   cors({
     origin: [
-      'https://chocolate-dragonfly-117105.hostingersite.com',
+      'https://https://arkansastrademarketing.com',
       'http://localhost:3000',
       'http://localhost:5173',
     ],

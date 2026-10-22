@@ -56,7 +56,7 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
       .values([
         {
           firstName: firstName,
-          lastName: lastName,
+          lastName: lastName || "",
           email: data.email,
           phone: data.phone || "",
           status: "new",

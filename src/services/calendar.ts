@@ -1,4 +1,5 @@
 import { google } from "googleapis";
+import crypto from 'crypto';
 
 const WORKING_HOURS = { start: 8, end: 17 };
 const SLOT_DURATION_MIN = 30;
@@ -92,4 +93,60 @@ export async function getAvailableSlots(
   });
 
   return availableSlots.map((slot) => slot.toISOString());
+}
+
+export async function createCalendarEvent(booking: {
+  name: string;
+  email: string;
+  phone: string;
+  notes?: string;
+  startTime: string;
+  endTime: string;
+  timezone: string;
+}) {
+  if (process.env.USE_MOCK_CALENDAR === "true") {
+    return {
+      meetLink: "https://meet.google.com/mock-link",
+      eventId: "mock-id",
+    };
+  }
+
+  const calendarId = process.env.GOOGLE_CALENDAR_ID || "primary";
+  const auth = new google.auth.GoogleAuth({
+    clientOptions: {
+      subject: 'admin@uzerobelize.com',
+    },
+    scopes: ["https://www.googleapis.com/auth/calendar.events"],
+  });
+  const calendar = google.calendar({ version: "v3", auth });
+
+  const response = await calendar.events.insert({
+    calendarId,
+    conferenceDataVersion: 1, // Required to generate a Google Meet link
+    sendUpdates: "all", // Sends an invite email to the attendee
+    requestBody: {
+      summary: `Discovery Call: ${booking.name}`,
+      description: `Phone: ${booking.phone}\nNotes: ${booking.notes || "None provided"}`,
+      start: {
+        dateTime: booking.startTime,
+        timeZone: booking.timezone,
+      },
+      end: {
+        dateTime: booking.endTime,
+        timeZone: booking.timezone,
+      },
+      attendees: [{ email: booking.email }],
+      conferenceData: {
+        createRequest: {
+          requestId: crypto.randomUUID(),
+          conferenceSolutionKey: { type: "hangoutsMeet" },
+        },
+      },
+    },
+  });
+
+  return {
+    eventId: response.data.id,
+    meetLink: response.data.hangoutLink,
+  };
 }

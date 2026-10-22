@@ -7,6 +7,7 @@ import { db } from "./db/index.js";
 import { sendNewLeadNotification } from './services/email.js';
 import { getAvailableSlots } from "./services/calendar.js";
 import { leads, insertLeadSchema } from "./db/schema.js";
+import bookings from './routes/bookings.js';
 import { eq } from "drizzle-orm";
 
 export const app = new Hono();
@@ -62,6 +63,8 @@ app.get(
     }
   },
 );
+
+app.route('/api/bookings', bookings);
 
 // POST /leads
 app.post("/leads", validate("json", insertLeadSchema), async (c) => {

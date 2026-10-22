@@ -50,7 +50,6 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
         .filter(Boolean)
         .join(" | ") || null;
 
-    const now = new Date();
     const [newLead] = await db
       .insert(leads)
       .values([
@@ -61,8 +60,6 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
           phone: data.phone || "",
           status: "new",
           notes: combinedNotes,
-          createdAt: now,
-          updatedAt: now,
         },
       ])
       .$returningId();

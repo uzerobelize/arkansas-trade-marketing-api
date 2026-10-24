@@ -23,10 +23,10 @@ export async function sendWhatsAppBookingAlert(payload: BookingAlertPayload) {
   const body = {
     messaging_product: "whatsapp",
     to: WHATSAPP_RECIPIENT_NUMBER,
-    type: META_TEMPLATE_NAME,
+    type: "template",
     template: {
       // Use 'hello_world' here if your custom template isn't approved yet
-      name: "hello_world",
+      name: META_TEMPLATE_NAME,
       language: { code: "en_US" },
       components: [
         {

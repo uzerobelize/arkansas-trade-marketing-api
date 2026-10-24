@@ -9,6 +9,7 @@ import { db } from "../db/index.js";
 import { sendNewLeadNotification } from "../services/email.js";
 
 // Mock external services & DB
+vi.mock('../services/whatsapp.js')
 vi.mock("../services/calendar.js");
 vi.mock("../services/email.js");
 vi.mock("../db/index.js", () => ({

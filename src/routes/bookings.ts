@@ -5,6 +5,7 @@ import { createCalendarEvent, getAvailableSlots } from "../services/calendar.js"
 import { db } from "../db/index.js";
 import { leads } from "../db/schema.js";
 import { sendNewLeadNotification } from "../services/email.js";
+import { sendWhatsAppBookingAlert } from '../services/whatsapp.js';
 
 const bookings = new Hono();
 
@@ -83,15 +84,24 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
       }
     }
 
-    // 5. Trigger Email Alert (Happens even if duplicate)
-    await sendNewLeadNotification({
-      firstName,
-      lastName: lastName || "",
-      email: data.email,
-      phone: data.phone,
-      status: isDuplicate ? "returning_lead_booked" : "booked",
-      notes: `Company: ${data.company || "N/A"} | Time: ${data.startTime} | Meet Link: ${calendarEvent.meetLink}${data.notes ? ` | Notes: ${data.notes}` : ""}`,
-    });
+    // 5. Trigger Notifications Asynchronously
+    // Using Promise.allSettled ensures one failing notification doesn't kill the others
+    Promise.allSettled([
+      sendNewLeadNotification({
+        firstName,
+        lastName: lastName || "",
+        email: data.email,
+        phone: data.phone,
+        status: isDuplicate ? "returning_lead_booked" : "booked",
+        notes: `Company: ${data.company || "N/A"} | Time: ${data.startTime} | Meet Link: ${calendarEvent.meetLink}${data.notes ? ` | Notes: ${data.notes}` : ""}`,
+      }),
+      sendWhatsAppBookingAlert({
+        name: [firstName, lastName].join(" "),
+        email: data.email,
+        phone: data.phone,
+        startTime: data.startTime,
+      }),
+    ]);
 
     // 6. Return response to API user
     return c.json(

@@ -30,7 +30,7 @@ export async function sendWhatsAppBookingAlert(payload: BookingAlertPayload) {
       language: { code: "en_US" },
       components: [
         {
-          type: "template",
+          type: "body",
           parameters: [
             { type: "text", text: payload.name },
             { type: "text", text: payload.email },

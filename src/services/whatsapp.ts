@@ -19,6 +19,7 @@ export async function sendWhatsAppBookingAlert(payload: BookingAlertPayload) {
   }
 
   const url = `https://graph.facebook.com/v20.0/${META_PHONE_NUMBER_ID}/messages`;
+  const userInfo = `${payload.name} (${payload.email})`;
 
   const body = {
     messaging_product: "whatsapp",
@@ -32,10 +33,7 @@ export async function sendWhatsAppBookingAlert(payload: BookingAlertPayload) {
         {
           type: "body",
           parameters: [
-            // { type: "text", text: payload.name },
-            // { type: "text", text: payload.email },
-            // { type: "text", text: payload.phone },
-            // { type: "text", text: payload.startTime },
+            { type: "text", text: userInfo },
           ],
         },
       ],

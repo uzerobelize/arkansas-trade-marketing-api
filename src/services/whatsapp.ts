@@ -26,10 +26,20 @@ export async function sendWhatsAppBookingAlert(payload: BookingAlertPayload) {
     to: WHATSAPP_RECIPIENT_NUMBER,
     type: "template",
     template: {
-      // Use 'hello_world' here if your custom template isn't approved yet
       name: META_TEMPLATE_NAME,
       language: { code: "en" },
       components: [
+        {
+          type: "header",
+          parameters: [
+            {
+              type: "image",
+              image: {
+                link: "https://arkansastrademarketing.com/assets/logo-C40e8qJ4.png", // Must be a publicly accessible image URL
+              },
+            },
+          ],
+        },
         {
           type: "body",
           parameters: [

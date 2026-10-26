@@ -28,7 +28,7 @@ export async function sendWhatsAppBookingAlert(payload: BookingAlertPayload) {
     template: {
       // Use 'hello_world' here if your custom template isn't approved yet
       name: META_TEMPLATE_NAME,
-      language: { code: "en_US" },
+      language: { code: "en" },
       components: [
         {
           type: "body",

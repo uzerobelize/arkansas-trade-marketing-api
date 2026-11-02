@@ -3,9 +3,15 @@
  * string (pages, settings, views, slots, field-type editors) so they load
  * without manual host imports. */
 
+import { registerComponents } from "@nextlyhq/admin";
+import * as _p0 from "@nextlyhq/plugin-form-builder/admin";
 import { registeredComponentPaths as listed } from "./plugin-admin-components.generated";
+import type { DeclaredComponentMap } from "nextly";
+import type * as siteConfig from "../../../nextly.config";
 
-const registered = {};
+const registered = {
+  "@nextlyhq/plugin-form-builder/admin#NewSubmissionsCard": _p0.NewSubmissionsCard, // widget "form-builder/new-submissions" of plugin "@nextlyhq/plugin-form-builder"
+} satisfies DeclaredComponentMap<typeof siteConfig>;
 
 type Registered = keyof typeof registered;
 type Listed = (typeof listed)[number];
@@ -22,11 +28,10 @@ if (
   JSON.stringify([...listed].sort())
 ) {
   throw Object.assign(
-    new Error(
-      "The admin's component map and its list disagree: run npx nextly generate:types."
-    ),
-    { code: "NEXTLY_ADMIN_COMPONENT_MAP_MISMATCH" }
+    new Error("The admin's component map and its list disagree: run npx nextly generate:types."),
+    { code: "NEXTLY_ADMIN_COMPONENT_MAP_MISMATCH" },
   );
 }
 
+registerComponents(registered);
 export const registeredComponentPaths = listed;

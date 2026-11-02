@@ -43,6 +43,29 @@ export default defineConfig({
     ],
   },
 
+  collections: [
+    {
+      slug: 'bookings',
+      labels: {
+        singular: 'Booking',
+        plural: 'Bookings',
+      },
+      fields: [
+        { name: 'name', type: 'text', required: true },
+        { name: 'email', type: 'email', required: true },
+        { name: 'phone', type: 'text', required: true },
+        { name: 'startTime', type: 'date', required: true },
+        {
+          name: 'status',
+          type: 'select',
+          options: ['booked', 'returning_lead_booked', 'cancelled'],
+          defaultValue: 'booked',
+        },
+        { name: 'notes', type: 'text', required: true },
+      ],
+    },
+  ],
+
   // TypeScript type generation
   typescript: {
     outputFile: "./src/types/generated/nextly-types.ts",

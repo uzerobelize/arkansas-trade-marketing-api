@@ -1,11 +1,11 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import { createBookingSchema } from "../db/booking.schema.js";
-import { createCalendarEvent, getAvailableSlots } from "../services/calendar.js";
-import { db } from "../db/index.js";
-import { leads } from "../db/schema.js";
-import { sendNewLeadNotification } from "../services/email.js";
-import { sendWhatsAppBookingAlert } from '../services/whatsapp.js';
+import { createBookingSchema } from "../db/booking.schema";
+import { createCalendarEvent, getAvailableSlots } from "../services/calendar";
+import { db } from "../db/index";
+import { bookings } from "../db/schema";
+import { sendNewLeadNotification } from "../services/email";
+import { sendWhatsAppBookingAlert } from '../services/whatsapp';
 
 const bookings = new Hono();
 
@@ -38,10 +38,6 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
       timezone: data.timezone,
     });
 
-    // 3. Split full name into firstName / lastName for DB insertion
-    const [firstName, ...lastNameParts] = data.name.trim().split(" ");
-    const lastName = lastNameParts.join(" ");
-
     const combinedNotes =
       [
         data.company ? `Company: ${data.company}` : null,
@@ -55,12 +51,11 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
     let isDuplicate = false;
 
     try {
-      const [newLead] = await db
-        .insert(leads)
+      const [newBooking] = await db
+        .insert(bookings)
         .values([
           {
-            firstName,
-            lastName: lastName || "",
+            name: data.name,
             email: data.email,
             phone: data.phone || null,
             notes: combinedNotes,
@@ -68,7 +63,7 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
         ])
         .$returningId();
 
-      bookingId = newLead.id;
+      bookingId = newBooking.id;
     } catch (insertError: any) {
       const isDup =
         insertError?.code === "ER_DUP_ENTRY" ||
@@ -86,6 +81,9 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
 
     // 5. Trigger Notifications Asynchronously
     // Using Promise.allSettled ensures one failing notification doesn't kill the others
+    const [firstName, ...lastNameParts] = data.name.trim().split(" ");
+    const lastName = lastNameParts.join(" ");
+
     Promise.allSettled([
       sendNewLeadNotification({
         firstName,
@@ -96,7 +94,7 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
         notes: `Company: ${data.company || "N/A"} | Time: ${data.startTime} | Meet Link: ${calendarEvent.meetLink}${data.notes ? ` | Notes: ${data.notes}` : ""}`,
       }),
       sendWhatsAppBookingAlert({
-        name: [firstName, lastName].join(" "),
+        name: data.name,
         email: data.email,
         phone: data.phone,
         startTime: data.startTime,

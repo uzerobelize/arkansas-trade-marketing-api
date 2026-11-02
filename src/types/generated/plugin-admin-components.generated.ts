@@ -3,4 +3,4 @@
  * plain strings, so server code can read what the admin's map holds
  * without importing the components. Regenerated with it. */
 
-export const registeredComponentPaths = [] as const;
+export const registeredComponentPaths = ["@nextlyhq/plugin-form-builder/admin#NewSubmissionsCard"] as const;

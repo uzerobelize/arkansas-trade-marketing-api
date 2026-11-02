@@ -1,0 +1,148 @@
+/**
+ * Tag Archive Page
+ *
+ * Posts with a given tag, paginated. Mirrors the category archive's
+ * layout and SEO wiring: CollectionPage + BreadcrumbList JSON-LD,
+ * full Metadata API, and a link to the tag's RSS feed.
+ */
+
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { JsonLd } from "@/components/JsonLd";
+import { EmptyState } from "@/components/EmptyState";
+import { ListingHeader } from "@/components/ListingHeader";
+import { Pagination } from "@/components/Pagination";
+import { PostGrid } from "@/components/PostGrid";
+import { getAllTagSlugs, getPostsByTag, getTagBySlug } from "@/lib/queries";
+import { absoluteUrl } from "@/lib/site-url";
+import { detailStaticParams, isBuildPlaceholder } from "@/lib/static-params";
+
+// Pre-render known tag pages at build time. Freshness afterward is
+// tag-based: the query helpers tag their reads (src/lib/queries), so a tag
+// or post change busts the tag and this page regenerates on the next
+// request — no time-based `revalidate`. New tags render on demand.
+export async function generateStaticParams() {
+  // Never empty, so the build learns this page reads the request: see
+  // detailStaticParams.
+  return detailStaticParams(await getAllTagSlugs());
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  // The build-time placeholder has no metadata of its own.
+  if (isBuildPlaceholder(slug)) return {};
+  const tag = await getTagBySlug(slug);
+  if (!tag) return { title: "Tag Not Found" };
+
+  const title = `#${tag.name}`;
+  const description = tag.description ?? `Posts tagged ${tag.name}.`;
+  const canonical = `/tags/${slug}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website", url: canonical },
+    twitter: { card: "summary_large_image", title, description },
+  };
+}
+
+export default async function TagPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const { slug } = await params;
+  if (isBuildPlaceholder(slug)) {
+    // The request is read first, so the build learns the page reads it; the
+    // placeholder stops here, before any database read.
+    await searchParams;
+    notFound();
+  }
+
+  // Decided before the request is read: an unknown archive's render then
+  // reads nothing per request, so Next.js can store it and answer 404 (to a
+  // crawler at once, to a browser from its second request) instead of a
+  // streamed not-found page.
+  const tag = await getTagBySlug(slug);
+  if (!tag) notFound();
+
+  const { page: pageParam } = await searchParams;
+  const currentPage = Math.max(1, Number(pageParam) || 1);
+
+  const posts = await getPostsByTag(slug, { page: currentPage, limit: 9 });
+
+  const collectionSchema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: tag.name,
+    description: tag.description ?? undefined,
+    url: absoluteUrl(`/tags/${slug}`),
+  };
+
+  const breadcrumbSchema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: absoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tags",
+        item: absoluteUrl("/tags"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: tag.name,
+        item: absoluteUrl(`/tags/${slug}`),
+      },
+    ],
+  };
+
+  return (
+    <>
+      <JsonLd data={[collectionSchema, breadcrumbSchema]} />
+
+      <div className="mx-auto max-w-7xl px-6 py-20 md:py-32">
+        <ListingHeader
+          label="Tag"
+          title={`#${tag.name}`}
+          description={tag.description ?? undefined}
+          stats={[
+            {
+              text: `${posts.meta.total} ${posts.meta.total === 1 ? "post" : "posts"}`,
+            },
+            { text: "RSS", href: `/tags/${slug}/feed.xml` },
+          ]}
+        />
+
+        {posts.items.length > 0 ? (
+          <PostGrid posts={posts.items} />
+        ) : (
+          <EmptyState type="tag" entityName={tag.name} />
+        )}
+
+        <div className="mt-12">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={posts.meta.totalPages}
+            basePath={`/tags/${slug}`}
+          />
+        </div>
+      </div>
+    </>
+  );
+}

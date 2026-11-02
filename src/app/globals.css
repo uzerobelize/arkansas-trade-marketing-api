@@ -1,0 +1,347 @@
+@import "tailwindcss";
+
+/* The families the imported font stylesheets declare, bound to the variables the rules
+   below read. Named here rather than by `next/font`, which used to inject them: the faces
+   now arrive as ordinary stylesheets, so the binding has to be written down somewhere, and
+   the name is load-bearing — the admin theme reads `--font-geist`. Quoted family names, so
+   the two-word values stay one identifier. */
+:root {
+  /* `--font-geist` is the name the ADMIN theme reads for its sans
+     (`--font-sans: var(--font-geist, Geist), ...`), so this template's face has
+     to be exposed under it as well as under its own name — otherwise the admin
+     renders in a system fallback while the blog renders in Inter. */
+  --font-geist: "Inter Variable";
+  --font-inter: "Inter Variable";
+  --font-geist-mono: "Geist Mono Variable";
+}
+
+/* ================================================================
+   The Antigravity Standard - Design Tokens
+   ----------------------------------------------------------------
+   A "weightless," premium aesthetic using neutral grays, 1px crisp
+   borders, and fluid typography. Strictly professional.
+   =============================================================== */
+
+:root,
+[data-theme="light"] {
+  --color-bg: #f9fafb;
+  --color-bg-surface: #ffffff;
+  --color-fg: #1e293b;
+  --color-fg-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-accent: #0f172a;
+  --color-accent-fg: #ffffff;
+  --color-tag-bg: #f1f5f9;
+  --color-tag-fg: #475569;
+  --radius-base: 4px;
+
+  /* Syntax colors. Nextly labels each token with what it is and leaves the
+   * colour to the site, so these are yours to change and they follow the
+   * theme like everything else. */
+  --color-code-bg: #f8fafc;
+  --color-code-fg: #1e293b;
+  --color-code-comment: #64748b;
+  --color-code-keyword: #7c3aed;
+  --color-code-string: #15803d;
+  --color-code-number: #c2410c;
+  --color-code-function: #2563eb;
+  --color-code-operator: #be123c;
+  --color-code-punctuation: #64748b;
+  --color-code-variable: #a16207;
+  --color-code-tag: #dc2626;
+}
+
+[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-bg-surface: #1e293b;
+  --color-fg: #f8fafc;
+  --color-fg-muted: #94a3b8;
+  --color-border: #334155;
+  --color-accent: #38bdf8;
+  --color-accent-fg: #0f172a;
+  --color-tag-bg: #1e293b;
+  --color-tag-fg: #cbd5e1;
+
+  /* Lightened for the dark surface rather than reused: the light hues are too
+   * dark to read against it. */
+  --color-code-bg: #0b1220;
+  --color-code-fg: #e2e8f0;
+  --color-code-comment: #94a3b8;
+  --color-code-keyword: #c4b5fd;
+  --color-code-string: #86efac;
+  --color-code-number: #fdba74;
+  --color-code-function: #93c5fd;
+  --color-code-operator: #fda4af;
+  --color-code-punctuation: #94a3b8;
+  --color-code-variable: #fcd34d;
+  --color-code-tag: #fca5a5;
+}
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-fg);
+  --color-surface: var(--color-bg-surface);
+  --color-muted: var(--color-fg-muted);
+  --color-border: var(--color-border);
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-fg);
+  --color-tag-bg: var(--color-tag-bg);
+  --color-tag-fg: var(--color-tag-fg);
+  /* Fallback arguments, not a trailing family list: an unresolved var() with no
+     fallback invalidates the whole declaration rather than falling through to
+     what comes after the closing paren. */
+  --font-sans: var(--font-inter, ui-sans-serif), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono, ui-monospace), monospace;
+  --radius-xl: 0px;
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* Base for rem */
+}
+
+/* Fluid Typography */
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+}
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.tracking-tighter-premium {
+  letter-spacing: -0.02em;
+}
+.tracking-tightest-premium {
+  letter-spacing: -0.05em;
+}
+
+/* ================================================================
+   Accessibility & Micro-interactions
+   =============================================================== */
+
+/* Weighed as two element names, the pseudo-class inside `:where()` counting
+   for nothing. That is enough to keep the ring over a reset added later, such
+   as `button { outline: none }`, and on this site's pages it draws as
+   `*:focus-visible` did, since no other rule here sets these properties on a
+   focused element. The admin at /admin renders in this same document and
+   reverts a site's rules made of element names only; with the pseudo-class
+   counted, this rule would outweigh that and redraw every focused control in
+   the admin with this ring and corner. The trade: a class-based reset, such as
+   `.btn { outline: none }`, outweighs this ring wherever it is written; give
+   such a rule a `:focus-visible` style of its own. */
+html body :where(:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.antigravity-press {
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.antigravity-press:active {
+  transform: scale(0.95) translateY(1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ================================================================
+   Prose styles for rich text content
+   =============================================================== */
+
+.prose-blog {
+  font-size: 1.0625rem; /* 17px for optimal readability */
+}
+
+.prose-blog h1,
+.prose-blog h2,
+.prose-blog h3,
+.prose-blog h4 {
+  color: var(--color-fg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-top: 2.5em;
+  margin-bottom: 0.8em;
+}
+
+.prose-blog p {
+  margin: 1.5em 0;
+  line-height: 1.8;
+  color: var(--color-fg);
+}
+
+.prose-blog a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: opacity 0.2s;
+}
+
+.prose-blog a:hover {
+  opacity: 0.7;
+}
+
+.prose-blog h2 {
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 2em 0 1em;
+  line-height: 1.2;
+}
+
+.prose-blog h3 {
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 1.5em 0 0.75em;
+  line-height: 1.3;
+}
+
+/* Inline code. `:not(pre *)` because a code block is a <code> inside a <pre>,
+   and it must not pick up the chip's border and padding. */
+.prose-blog code:not(pre *) {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.125em 0.375em;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: var(--color-accent);
+}
+
+.prose-blog pre {
+  background: var(--color-code-bg);
+  color: var(--color-code-fg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 2.5em 0;
+}
+
+.prose-blog pre code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  line-height: 1.6;
+}
+
+/* The highlighter mark. Nextly names it and leaves the colour here for the
+   same reason as the syntax tokens below: a colour baked into the content
+   cannot be restyled, and the browser's default `mark` is a light yellow with
+   whatever the page's own text colour is — which on a dark page is white on
+   yellow. Its foreground is set with its background so the pairing survives
+   the theme. */
+.prose-blog .nextly-rich-text-highlight {
+  background-color: var(--color-highlight, #fef08a);
+  color: var(--color-highlight-foreground, #0f172a);
+  padding: 0.125rem 0.25rem;
+}
+
+/* Syntax tokens. Nextly ships the token type as a class and no colour, so the
+   palette is the site's and both themes work from one rendered page — with no
+   highlighter shipped to the browser. */
+.prose-blog .nextly-code-token--comment,
+.prose-blog .nextly-code-token--prolog,
+.prose-blog .nextly-code-token--doctype,
+.prose-blog .nextly-code-token--cdata,
+.prose-blog .nextly-code-token--namespace {
+  color: var(--color-code-comment);
+  font-style: italic;
+}
+
+.prose-blog .nextly-code-token--keyword,
+.prose-blog .nextly-code-token--atrule,
+.prose-blog .nextly-code-token--important {
+  color: var(--color-code-keyword);
+}
+
+.prose-blog .nextly-code-token--string,
+.prose-blog .nextly-code-token--char,
+.prose-blog .nextly-code-token--regex,
+.prose-blog .nextly-code-token--inserted {
+  color: var(--color-code-string);
+}
+
+.prose-blog .nextly-code-token--number,
+.prose-blog .nextly-code-token--boolean,
+.prose-blog .nextly-code-token--constant,
+.prose-blog .nextly-code-token--symbol {
+  color: var(--color-code-number);
+}
+
+.prose-blog .nextly-code-token--function,
+.prose-blog .nextly-code-token--attr,
+.prose-blog .nextly-code-token--property,
+.prose-blog .nextly-code-token--builtin,
+.prose-blog .nextly-code-token--url {
+  color: var(--color-code-function);
+}
+
+.prose-blog .nextly-code-token--operator {
+  color: var(--color-code-operator);
+}
+
+.prose-blog .nextly-code-token--punctuation {
+  color: var(--color-code-punctuation);
+}
+
+.prose-blog .nextly-code-token--variable,
+.prose-blog .nextly-code-token--class,
+.prose-blog .nextly-code-token--class-name {
+  color: var(--color-code-variable);
+}
+
+.prose-blog .nextly-code-token--tag,
+.prose-blog .nextly-code-token--selector,
+.prose-blog .nextly-code-token--entity,
+.prose-blog .nextly-code-token--deleted {
+  color: var(--color-code-tag);
+}
+
+.prose-blog blockquote {
+  border-left: 2px solid var(--color-fg);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 2.5em 0;
+  color: var(--color-fg-muted);
+  font-style: normal;
+  font-size: 1.25em;
+  line-height: 1.6;
+}
+
+.prose-blog ul,
+.prose-blog ol {
+  padding-left: 1.5rem;
+  margin: 1.5em 0;
+}
+
+.prose-blog li {
+  margin: 0.75em 0;
+  line-height: 1.7;
+  color: var(--color-fg);
+}

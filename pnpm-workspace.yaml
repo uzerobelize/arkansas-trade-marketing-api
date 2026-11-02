@@ -1,4 +1,23 @@
-onlyBuiltDependencies:
-  - esbuild
+# Allow native dependencies to run their build scripts. pnpm 10+ blocks
+# dependency build scripts by default; without this better-sqlite3 has no
+# compiled binding (sqlite apps crash at boot) and sharp/esbuild degrade.
+#
+# pnpm 11+ reads `allowBuilds`; pnpm 10.6+ reads `onlyBuiltDependencies`.
+# npm and yarn ignore this file; pnpm 9 needs neither key, because it runs
+# build scripts by default.
+#
+# It does still READ the file, which is what the empty `packages` list is
+# for: through pnpm 9.3 the presence of this file declares a workspace, and
+# a missing `packages` key fails the install outright. This app has no
+# workspace members.
+packages: []
 allowBuilds:
+  better-sqlite3: true
   esbuild: true
+  sharp: true
+  unrs-resolver: true
+onlyBuiltDependencies:
+  - better-sqlite3
+  - esbuild
+  - sharp
+  - unrs-resolver

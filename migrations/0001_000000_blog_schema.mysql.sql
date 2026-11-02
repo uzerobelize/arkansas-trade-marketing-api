@@ -1,0 +1,271 @@
+-- Migration: Blog Template Schema
+-- Description: Creates collections, singles, and junction tables for blog
+-- Dialect: mysql
+-- Template: blog
+-- Version: 1.0
+--
+-- Every table takes the database's character set and collation, as nextly's
+-- own tables do: a foreign key to `users` or `media` needs both sides in one
+-- collation. A column that references a row is a varchar, since MySQL keys no
+-- TEXT column and indexes every foreign key: varchar(191) for a user, the
+-- width nextly gives users.id (an auth adapter's ids can be longer than a
+-- UUID), and varchar(36), nextly's id type, for any other row.
+
+-- ============================================
+-- UP: Create all blog schema
+-- ============================================
+
+-- ============ COLLECTIONS ============
+
+-- Posts collection
+CREATE TABLE IF NOT EXISTS `dc_posts` (
+  `id` varchar(36) PRIMARY KEY DEFAULT (UUID()),
+  `title` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `content` text,
+  `excerpt` text,
+  `featured_image` varchar(36),
+  `author` varchar(191),
+  `categories` json,
+  `tags` json,
+  `published_at` timestamp NULL DEFAULT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'draft' CHECK (status IN ('draft', 'published')),
+  `first_published_at` timestamp NULL DEFAULT NULL,
+  `featured` tinyint(1) DEFAULT 0,
+  `seo` json,
+  `reading_time` integer,
+  `word_count` integer,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` text,
+  UNIQUE KEY `uq_posts_slug` (`slug`)
+) ENGINE=InnoDB;
+
+-- Categories collection
+CREATE TABLE IF NOT EXISTS `dc_categories` (
+  `id` varchar(36) PRIMARY KEY DEFAULT (UUID()),
+  `title` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `icon` text,
+  `description` text,
+  `status` varchar(20) NOT NULL DEFAULT 'published' CHECK (status IN ('draft', 'published')),
+  `first_published_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` text,
+  UNIQUE KEY `uq_categories_slug` (`slug`)
+) ENGINE=InnoDB;
+
+-- Tags collection
+CREATE TABLE IF NOT EXISTS `dc_tags` (
+  `id` varchar(36) PRIMARY KEY DEFAULT (UUID()),
+  `title` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `description` text,
+  `status` varchar(20) NOT NULL DEFAULT 'published' CHECK (status IN ('draft', 'published')),
+  `first_published_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` text,
+  UNIQUE KEY `uq_tags_slug` (`slug`)
+) ENGINE=InnoDB;
+
+-- ============ USER EXTENSION TABLE ============
+
+-- user_ext: extends the built-in users table with blog-specific author fields.
+-- Structure mirrors what UserExtSchemaService.generateMigrationSQL() produces
+-- at runtime so the migration and the runtime schema stay in lockstep.
+-- Column names are snake_case of the camelCase field names defined in
+-- codefirst.config.ts: bio → bio, avatarUrl → avatar_url, slug → slug.
+-- One exception: `slug` is unique here, as in the other dialects' files,
+-- because /authors/[slug] finds an author by it. MySQL keys a varchar, not a
+-- TEXT column, so it is varchar(255): the length nextly gives a unique text
+-- field on MySQL.
+CREATE TABLE IF NOT EXISTS `user_ext` (
+  `id` varchar(36) PRIMARY KEY NOT NULL,
+  `user_id` varchar(191) NOT NULL,
+  `bio` text,
+  `avatar_url` text,
+  `slug` varchar(255),
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` text,
+  UNIQUE KEY `uq_user_ext_user_id` (`user_id`),
+  UNIQUE KEY `uq_user_ext_slug` (`slug`),
+  CONSTRAINT `fk_user_ext_user_id` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============ JUNCTION TABLES ============
+
+-- Posts <-> Categories (many-to-many)
+CREATE TABLE IF NOT EXISTS `dc_posts_categories` (
+  `post_id` varchar(36) NOT NULL,
+  `category_id` varchar(36) NOT NULL,
+  PRIMARY KEY (`post_id`, `category_id`),
+  CONSTRAINT `fk_posts_categories_post` FOREIGN KEY (`post_id`) REFERENCES `dc_posts`(`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_posts_categories_category` FOREIGN KEY (`category_id`) REFERENCES `dc_categories`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Posts <-> Tags (many-to-many)
+CREATE TABLE IF NOT EXISTS `dc_posts_tags` (
+  `post_id` varchar(36) NOT NULL,
+  `tag_id` varchar(36) NOT NULL,
+  PRIMARY KEY (`post_id`, `tag_id`),
+  CONSTRAINT `fk_posts_tags_post` FOREIGN KEY (`post_id`) REFERENCES `dc_posts`(`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_posts_tags_tag` FOREIGN KEY (`tag_id`) REFERENCES `dc_tags`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- ============ SINGLES ============
+-- Note: All single tables include system columns (id, title, slug, created_at, updated_at)
+-- and use snake_case column names for all fields (e.g., hero_title not heroTitle).
+
+-- Site Settings single
+CREATE TABLE IF NOT EXISTS `single_site_settings` (
+  `id` varchar(36) PRIMARY KEY DEFAULT (UUID()),
+  `title` varchar(255) NOT NULL DEFAULT 'Site Settings',
+  `slug` varchar(255) NOT NULL DEFAULT 'site-settings',
+  `status` varchar(20) NOT NULL DEFAULT 'published' CHECK (status IN ('draft', 'published')),
+  `first_published_at` timestamp NULL DEFAULT NULL,
+  `site_name` varchar(255) NOT NULL DEFAULT 'My Blog',
+  `tagline` varchar(500) DEFAULT 'Thoughts on web development',
+  `site_description` text,
+  `logo` varchar(36),
+  `social` json,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` text
+) ENGINE=InnoDB;
+
+-- Navigation single
+CREATE TABLE IF NOT EXISTS `single_navigation` (
+  `id` varchar(36) PRIMARY KEY DEFAULT (UUID()),
+  `title` varchar(255) NOT NULL DEFAULT 'Navigation',
+  `slug` varchar(255) NOT NULL DEFAULT 'navigation',
+  `status` varchar(20) NOT NULL DEFAULT 'published' CHECK (status IN ('draft', 'published')),
+  `first_published_at` timestamp NULL DEFAULT NULL,
+  `header_links` json,
+  `footer_read_links` json,
+  `show_theme_toggle` tinyint(1) DEFAULT 1,
+  `show_search_icon` tinyint(1) DEFAULT 1,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` text
+) ENGINE=InnoDB;
+
+-- Homepage single
+CREATE TABLE IF NOT EXISTS `single_homepage` (
+  `id` varchar(36) PRIMARY KEY DEFAULT (UUID()),
+  `title` varchar(255) NOT NULL DEFAULT 'Homepage',
+  `slug` varchar(255) NOT NULL DEFAULT 'homepage',
+  `status` varchar(20) NOT NULL DEFAULT 'published' CHECK (status IN ('draft', 'published')),
+  `first_published_at` timestamp NULL DEFAULT NULL,
+  `hero_title` varchar(500) NOT NULL DEFAULT 'Ideas on building, shipping, and surviving software.',
+  `hero_subtitle` varchar(500) DEFAULT 'Essays and notes from our engineering team.',
+  `show_featured_post` tinyint(1) DEFAULT 1,
+  `featured_section_title` varchar(100) DEFAULT 'Featured',
+  `show_latest_posts` tinyint(1) DEFAULT 1,
+  `latest_section_title` varchar(100) DEFAULT 'Latest',
+  `latest_posts_count` integer DEFAULT 3,
+  `show_category_strip` tinyint(1) DEFAULT 1,
+  `show_newsletter_cta` tinyint(1) DEFAULT 1,
+  `newsletter_heading` varchar(255) DEFAULT 'Get new posts in your inbox',
+  `newsletter_subheading` varchar(255) DEFAULT 'No spam. Unsubscribe anytime.',
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by` text
+) ENGINE=InnoDB;
+
+-- ============ INDEXES ============
+
+-- Posts indexes
+CREATE INDEX `idx_posts_status` ON `dc_posts`(`status`);
+CREATE INDEX `idx_posts_published` ON `dc_posts`(`published_at` DESC);
+CREATE INDEX `idx_posts_featured` ON `dc_posts`(`featured`);
+CREATE INDEX `idx_posts_author` ON `dc_posts`(`author`);
+
+-- Categories indexes
+CREATE INDEX `idx_categories_slug` ON `dc_categories`(`slug`);
+
+-- Tags indexes
+CREATE INDEX `idx_tags_slug` ON `dc_tags`(`slug`);
+
+-- Junction table indexes (FK columns not covered by composite PK)
+CREATE INDEX `idx_posts_categories_category` ON `dc_posts_categories`(`category_id`);
+CREATE INDEX `idx_posts_tags_tag` ON `dc_posts_tags`(`tag_id`);
+
+-- Singles indexes (slug columns)
+CREATE UNIQUE INDEX `uq_single_site_settings_slug` ON `single_site_settings`(`slug`);
+CREATE UNIQUE INDEX `uq_single_navigation_slug` ON `single_navigation`(`slug`);
+CREATE UNIQUE INDEX `uq_single_homepage_slug` ON `single_homepage`(`slug`);
+
+-- ============ FOREIGN KEY RELATIONSHIPS ============
+
+-- Posts featured_image -> media (text FK — media.id is text in the core schema)
+ALTER TABLE `dc_posts`
+ADD CONSTRAINT `fk_posts_featured_image`
+FOREIGN KEY (`featured_image`) REFERENCES `media`(`id`) ON DELETE SET NULL;
+
+-- Posts author -> users (varchar(191), as users.id in the core schema)
+ALTER TABLE `dc_posts`
+ADD CONSTRAINT `fk_posts_author`
+FOREIGN KEY (`author`) REFERENCES `users`(`id`) ON DELETE SET NULL;
+
+-- Site Settings logo -> media (text FK — media.id is text in the core schema)
+ALTER TABLE `single_site_settings`
+ADD CONSTRAINT `fk_site_settings_logo`
+FOREIGN KEY (`logo`) REFERENCES `media`(`id`) ON DELETE SET NULL;
+
+-- ============ SINGLES DATA DEFAULTS ============
+-- Insert default documents for each single so they're accessible immediately
+-- MySQL uses INSERT IGNORE instead of ON CONFLICT DO NOTHING
+INSERT IGNORE INTO `single_site_settings` (`id`, `title`, `slug`, `status`, `site_name`, `tagline`, `created_at`, `updated_at`)
+VALUES (UUID(), 'Site Settings', 'site-settings', 'published', 'My Blog', 'Thoughts on web development', NOW(), NOW());
+
+INSERT IGNORE INTO `single_navigation` (`id`, `title`, `slug`, `status`, `show_theme_toggle`, `show_search_icon`, `created_at`, `updated_at`)
+VALUES (UUID(), 'Navigation', 'navigation', 'published', 1, 1, NOW(), NOW());
+
+INSERT IGNORE INTO `single_homepage` (`id`, `title`, `slug`, `status`, `hero_title`, `hero_subtitle`, `show_featured_post`, `featured_section_title`, `show_latest_posts`, `latest_section_title`, `latest_posts_count`, `show_category_strip`, `show_newsletter_cta`, `newsletter_heading`, `newsletter_subheading`, `created_at`, `updated_at`)
+VALUES (UUID(), 'Homepage', 'homepage', 'published', 'Ideas on building, shipping, and surviving software.', 'Essays and notes from our engineering team.', 1, 'Featured', 1, 'Latest', 3, 1, 1, 'Get new posts in your inbox', 'No spam. Unsubscribe anytime.', NOW(), NOW());
+
+-- ============================================
+-- DOWN: Rollback all changes
+-- ============================================
+
+-- Drop foreign keys first
+ALTER TABLE `dc_posts` DROP CONSTRAINT IF EXISTS `fk_posts_author`;
+ALTER TABLE `dc_posts` DROP CONSTRAINT IF EXISTS `fk_posts_featured_image`;
+ALTER TABLE `single_site_settings` DROP CONSTRAINT IF EXISTS `fk_site_settings_logo`;
+ALTER TABLE `user_ext` DROP CONSTRAINT IF EXISTS `fk_user_ext_user_id`;
+
+-- Drop indexes
+DROP INDEX IF EXISTS `uq_posts_slug` ON `dc_posts`;
+DROP INDEX IF EXISTS `uq_categories_slug` ON `dc_categories`;
+DROP INDEX IF EXISTS `uq_tags_slug` ON `dc_tags`;
+DROP INDEX IF EXISTS `idx_posts_status` ON `dc_posts`;
+DROP INDEX IF EXISTS `idx_posts_published` ON `dc_posts`;
+DROP INDEX IF EXISTS `idx_posts_featured` ON `dc_posts`;
+DROP INDEX IF EXISTS `idx_posts_author` ON `dc_posts`;
+DROP INDEX IF EXISTS `idx_posts_categories_category` ON `dc_posts_categories`;
+DROP INDEX IF EXISTS `idx_posts_tags_tag` ON `dc_posts_tags`;
+DROP INDEX IF EXISTS `uq_user_ext_user_id` ON `user_ext`;
+DROP INDEX IF EXISTS `uq_user_ext_slug` ON `user_ext`;
+DROP INDEX IF EXISTS `uq_single_site_settings_slug` ON `single_site_settings`;
+DROP INDEX IF EXISTS `uq_single_navigation_slug` ON `single_navigation`;
+DROP INDEX IF EXISTS `uq_single_homepage_slug` ON `single_homepage`;
+
+-- Drop junction tables first (depend on dc_posts, dc_categories, dc_tags)
+DROP TABLE IF EXISTS `dc_posts_categories`;
+DROP TABLE IF EXISTS `dc_posts_tags`;
+
+-- Drop user extension table (depends on users)
+DROP TABLE IF EXISTS `user_ext`;
+
+-- Drop tables (singles first, then collections)
+DROP TABLE IF EXISTS `single_homepage`;
+DROP TABLE IF EXISTS `single_navigation`;
+DROP TABLE IF EXISTS `single_site_settings`;
+DROP TABLE IF EXISTS `dc_tags`;
+DROP TABLE IF EXISTS `dc_categories`;
+DROP TABLE IF EXISTS `dc_posts`;

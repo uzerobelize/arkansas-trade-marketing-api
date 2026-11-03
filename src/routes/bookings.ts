@@ -7,9 +7,9 @@ import { bookings } from "../db/schema";
 import { sendNewLeadNotification } from "../services/email";
 import { sendWhatsAppBookingAlert } from '../services/whatsapp';
 
-const bookings = new Hono();
+const bookingsApi = new Hono();
 
-bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
+bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
   const data = c.req.valid("json");
 
   try {
@@ -59,9 +59,14 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
             email: data.email,
             phone: data.phone || null,
             notes: combinedNotes,
+            startTime: new Date(data.startTime),
+            endTime: data.endTime ? new Date(data.endTime) : null,
+            timezone: data.timezone || 'America/Chicago',
+            notes: data.notes || null,
+            status: 'booked',
           },
         ])
-        .$returningId();
+        .returning();
 
       bookingId = newBooking.id;
     } catch (insertError: any) {
@@ -122,4 +127,4 @@ bookings.post("/", zValidator("json", createBookingSchema), async (c) => {
   }
 });
 
-export default bookings;
+export default bookingsApi;

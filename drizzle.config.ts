@@ -1,15 +1,14 @@
 import { defineConfig } from 'drizzle-kit';
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
+
+// Load the same environment variables Next.js uses
+dotenv.config({ path: '.env' });
 
 export default defineConfig({
   schema: './src/db/schema.ts',
-  out: './drizzle/migrations',
-  dialect: 'mysql',
+  out: './drizzle',
+  dialect: 'postgresql',
   dbCredentials: {
-    host: process.env.DB_HOST || 'localhost',
-    port: Number(process.env.DB_PORT) || 3306,
-    user: process.env.DB_USER!,
-    password: process.env.DB_PASSWORD!,
-    database: process.env.DB_NAME!,
+    url: process.env.DATABASE_URL!,
   },
 });

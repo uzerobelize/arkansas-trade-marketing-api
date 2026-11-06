@@ -8,5 +8,8 @@
  */
 
 export * from "./bookings.zod";
+export * from "./categories.zod";
 export * from "./form-submissions.zod";
 export * from "./forms.zod";
+export * from "./posts.zod";
+export * from "./tags.zod";

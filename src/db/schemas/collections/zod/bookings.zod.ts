@@ -10,7 +10,10 @@ export const BookingsSchema = z.object({
   email: z.string().email(),
   phone: z.string(),
   startTime: z.string().datetime(),
-  status: z.enum(["booked", "returning_lead_booked", "cancelled"]).nullish(),
+  endTime: z.string().datetime().nullish(),
+  timezone: z.string().nullish(),
+  notes: z.string().nullish(),
+  status: z.enum(["booked", "returning_lead_booked", "cancelled"]),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });

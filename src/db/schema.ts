@@ -1,5 +1,5 @@
 // import { mysqlTable, int, varchar, text, timestamp } from 'drizzle-orm/mysql-core';
-import { pgTable, uuid, varchar, timestamp, text } from 'drizzle-orm/pg-core';
+import { pgTable, varchar, timestamp, text } from 'drizzle-orm/pg-core';
 import type { InferSelectModel, InferInsertModel } from 'drizzle-orm';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { z } from 'zod';

@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "nextly": "nextly",
+    "test": "vitest run",
     "db:setup": "nextly db:sync",
     "db:migrate": "nextly migrate",
     "db:migrate:status": "nextly migrate:status",

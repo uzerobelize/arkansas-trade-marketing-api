@@ -16,7 +16,7 @@ vi.mock("../db/index.js", () => ({
   db: {
     insert: vi.fn(() => ({
       values: vi.fn(() => ({
-        $returningId: vi.fn().mockResolvedValue([{ id: 1 }]),
+        returning: vi.fn().mockResolvedValue([{ id: 1 }]),
       })),
     })),
   },
@@ -44,9 +44,9 @@ describe("POST /api/bookings", () => {
       () =>
         ({
           values: vi.fn(() => ({
-            $returningId: vi.fn().mockResolvedValue([{ id: 1 }]),
+            returning: vi.fn().mockResolvedValue([{ id: 1 }]),
           })),
-        }) as any,
+        }) as unknown,
     );
   });
 
@@ -101,9 +101,9 @@ describe("POST /api/bookings", () => {
       () =>
         ({
           values: vi.fn(() => ({
-            $returningId: vi.fn().mockRejectedValue({ code: "ER_DUP_ENTRY" }),
+            returning: vi.fn().mockRejectedValue({ code: "ER_DUP_ENTRY" }),
           })),
-        }) as any,
+        }) as unknown,
     );
 
     const res = await app.request("/api/bookings", {

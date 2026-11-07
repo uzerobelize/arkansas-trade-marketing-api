@@ -49,7 +49,7 @@ describe("Availability Engine", () => {
 
     const calendarInstance = google.calendar({
       version: "v3",
-      auth: {} as any,
+      auth: {} as unknown,
     });
     expect(calendarInstance.freebusy.query).toHaveBeenCalledWith(
       expect.objectContaining({

@@ -22,6 +22,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "nextly/runtime";
+import Image from "next/image";
 
 import { AuthorCard } from "@/components/AuthorCard";
 import { CategoryBadge } from "@/components/CategoryBadge";
@@ -238,7 +239,7 @@ export default async function PostPage({
                     style={{ background: "var(--color-bg)" }}
                   >
                     {post.author.avatarUrl ? (
-                      <img
+                      <Image
                         src={post.author.avatarUrl}
                         alt={post.author.name}
                         className="h-full w-full object-cover"

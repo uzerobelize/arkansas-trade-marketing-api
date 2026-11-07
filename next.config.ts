@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   // Next.js's default cache would serve the previous page once more:
   // https://nextlyhq.com/docs/getting-started/installation#cache-components
   cacheComponents: true,
+  output: "standalone",
   partialPrefetching: true,
   cacheHandler: require.resolve("nextly/cache-handler"),
   cacheMaxMemorySize: 0,

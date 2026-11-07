@@ -53,7 +53,7 @@ bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
     try {
       const [newBooking] = await db
         .insert(bookings)
-        .values([
+        .values(
           {
             name: data.name,
             email: data.email,
@@ -65,11 +65,11 @@ bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
             notes: data.notes || null,
             status: 'booked',
           },
-        ])
+        )
         .returning();
 
       bookingId = newBooking.id;
-    } catch (insertError: any) {
+    } catch (insertError: unknown) {
       const isDup =
         insertError?.code === "ER_DUP_ENTRY" ||
         insertError?.cause?.code === "ER_DUP_ENTRY";
@@ -118,7 +118,7 @@ bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
       },
       201,
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[Booking Error]", error);
     if (error?.cause) {
       console.error("[Booking Cause Details]", error.cause);

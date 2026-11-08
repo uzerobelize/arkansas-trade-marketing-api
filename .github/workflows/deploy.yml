@@ -1,0 +1,136 @@
+name: Build and Push to Build Branch
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Next.js Standalone Application
+        env:
+          DB_DIALECT: ${{ secrets.DB_DIALECT }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NEXTLY_SECRET: ${{ secrets.NEXTLY_SECRET }}
+          NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+          NODE_ENV: production
+        run: npm run build
+
+      - name: Prepare Standalone Directory Layout and Inject Bootstrapper
+        run: |
+          # 1. Copy static assets into standalone directory
+          cp -ar public .next/standalone/public
+          cp -ar .next/static .next/standalone/.next/static
+
+          # 2. Backup real package.json and stash package-lock.json
+          mv .next/standalone/package.json .next/standalone/package.json.real
+          if [ -f .next/standalone/package-lock.json ]; then
+            mv .next/standalone/package-lock.json .next/standalone/package-lock.json.real
+          fi
+
+          # 3. Rename standalone node_modules to hide it from Hostinger's 'rm -rf node_modules'
+          mv .next/standalone/node_modules .next/standalone/node_modules_stash
+
+          # 4. Create dummy package.json so Hostinger's npm install finishes in ~0.5s with 0 packages
+          echo '{"name":"standalone-app","version":"1.0.0","private":true,"dependencies":{}}' > .next/standalone/package.json
+
+          # 5. Create self-restoring bootstrap script
+          cat << 'EOF' > bootstrap.js
+          const fs = require('fs');
+          const p_path = require('path');
+
+          console.log('[[DEBUG]]: STARTING SERVER PRELOAD SETUP')
+
+          const root = __dirname;
+          const stashPath = p_path.join(root, 'node_modules_stash');
+          const targetPath = p_path.join(root, 'node_modules');
+          const realPkg = p_path.join(root, 'package.json.real');
+          const targetPkg = p_path.join(root, 'package.json');
+          const realLock = p_path.join(root, 'package-lock.json.real');
+          const targetLock = p_path.join(root, 'package-lock.json');
+
+          console.log('[[DEBUG]]: CHECKING FOR STASHED NODE_MODULES')
+          // Restore standalone node_modules on cold boot
+          if (fs.existsSync(stashPath)) {
+            console.log('[[DEBUG]]: STASHED NODE_MODULES FOUND, ATTEMPTING TO RESTORE')
+            try {
+              if (fs.existsSync(targetPath)) {
+                fs.rmSync(targetPath, { recursive: true, force: true });
+              }
+              fs.renameSync(stashPath, targetPath);
+              console.log('[[DEBUG]]: STASHED NODE_MODULES RESTORED')
+            } catch (err) {
+              console.error('[Bootstrap] Failed to restore node_modules:', err);
+            }
+          }
+
+          // Restore real package.json & package-lock.json
+          console.log('[[DEBUG]]: CHECKING FOR STASHED PACKAGE.JSON & PACKAGE-LOCK.JSON')
+          if (fs.existsSync(realPkg)) {
+            console.log('[[DEBUG]]: STASHED PACKAGE.JSON FOUND, ATTEMPTING TO RESTORE')
+            try {
+              fs.copyFileSync(realPkg, targetPkg);
+              console.log('[[DEBUG]]: STASHED PACKAGE.JSON RESTORED')
+            } catch (err) {}
+          }
+
+          console.log('[[DEBUG]]: CHECKING FOR STASHED PACKAGE-LOCK.JSON & PACKAGE-LOCK.JSON')
+          if (fs.existsSync(realLock)) {
+            console.log('[[DEBUG]]: STASHED PACKAGE-LOCK.JSON FOUND, ATTEMPTING TO RESTORE')
+            try {
+              console.log('[[DEBUG]]: STASHED PACKAGE-LOCK.JSON RESTORED')
+              fs.copyFileSync(realLock, targetLock);
+            } catch (err) {}
+          }
+
+          // Stub process.stdin to prevent Phusion Passenger UNIX socket collision
+          try {
+            const { Readable } = require('stream');
+            Object.defineProperty(process, 'stdin', {
+              value: new Readable({ read() {} }),
+              configurable: true,
+            });
+          } catch (err) {}
+          EOF
+
+          # 6. Prepend bootstrap code to top of server.js
+          cat bootstrap.js .next/standalone/server.js > .next/standalone/server.js.tmp
+          mv .next/standalone/server.js.tmp .next/standalone/server.js
+          rm bootstrap.js
+
+          # 7. Copy complete payload to build-dist folder for git push
+          mkdir -p ../build-dist
+          cp -ar .next/standalone/. ../build-dist/
+
+
+      - name: Push Compiled Artifacts to 'build' Branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          cd ../build-dist
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Stage all compiled standalone files (server.js, node_modules, .next, etc.)
+          git add -A
+          git commit -m "Build output from commit ${{ github.sha }}"
+          
+          # Force push to the 'build' branch
+          git push -f https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:build

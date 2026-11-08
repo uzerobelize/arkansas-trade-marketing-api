@@ -46,7 +46,8 @@ describe("POST /api/bookings", () => {
           values: vi.fn(() => ({
             returning: vi.fn().mockResolvedValue([{ id: 1 }]),
           })),
-        }) as unknown,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        }) as any,
     );
   });
 
@@ -103,7 +104,8 @@ describe("POST /api/bookings", () => {
           values: vi.fn(() => ({
             returning: vi.fn().mockRejectedValue({ code: "ER_DUP_ENTRY" }),
           })),
-        }) as unknown,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        }) as any,
     );
 
     const res = await app.request("/api/bookings", {

@@ -1,16 +1,20 @@
 import { Hono } from "hono";
+import { DatabaseError } from "pg";
+import { DrizzleQueryError } from "drizzle-orm/errors";
 import { zValidator } from "@hono/zod-validator";
 import { createBookingSchema } from "../db/booking.schema";
+import type { CreateBookingInput } from "../db/booking.schema";
 import { createCalendarEvent, getAvailableSlots } from "../services/calendar";
 import { db } from "../db/index";
 import { bookings } from "../db/schema";
+import type { NewBooking } from "../db/schema";
 import { sendNewLeadNotification } from "../services/email";
 import { sendWhatsAppBookingAlert } from '../services/whatsapp';
 
 const bookingsApi = new Hono();
 
 bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
-  const data = c.req.valid("json");
+  const data = c.req.valid("json") as CreateBookingInput;
 
   try {
     // 1. Re-verify availability
@@ -47,7 +51,7 @@ bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
         .join(" | ") || null;
 
     // 4. Attempt DB Insert with Duplicate Catch
-    let bookingId: number | null = null;
+    let bookingId: string | null = null;
     let isDuplicate = false;
 
     try {
@@ -62,25 +66,24 @@ bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
             startTime: new Date(data.startTime),
             endTime: data.endTime ? new Date(data.endTime) : null,
             timezone: data.timezone || 'America/Chicago',
-            notes: data.notes || null,
             status: 'booked',
-          },
+          } as NewBooking,
         )
         .returning();
 
       bookingId = newBooking.id;
-    } catch (insertError: unknown) {
-      const isDup =
-        insertError?.code === "ER_DUP_ENTRY" ||
-        insertError?.cause?.code === "ER_DUP_ENTRY";
-
-      if (isDup) {
-        console.warn(
-          `[Booking] Duplicate lead detected for email: ${data.email}. Skipping DB insert.`,
-        );
-        isDuplicate = true;
+    } catch (err) {
+      if (err instanceof DrizzleQueryError && err.cause instanceof DatabaseError) {
+        if (err?.cause?.code === "ER_DUP_ENTRY") {
+          console.warn(
+            `[Booking] Duplicate lead detected for email: ${data.email}. Skipping DB insert.`,
+          );
+          isDuplicate = true;
+        } else {
+          throw err; // Throw non-duplicate DB errors to the outer catch
+        }
       } else {
-        throw insertError; // Throw non-duplicate DB errors to the outer catch
+        throw err;
       }
     }
 
@@ -118,9 +121,11 @@ bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
       },
       201,
     );
-  } catch (error: unknown) {
+  } catch (err) {
+    const error = err as Error;
+
     console.error("[Booking Error]", error);
-    if (error?.cause) {
+    if ("cause" in error) {
       console.error("[Booking Cause Details]", error.cause);
     }
     return c.json({ error: "Failed to process booking" }, 500);

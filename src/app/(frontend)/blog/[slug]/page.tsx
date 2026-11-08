@@ -22,7 +22,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "nextly/runtime";
-import Image from "next/image";
 
 import { AuthorCard } from "@/components/AuthorCard";
 import { CategoryBadge } from "@/components/CategoryBadge";

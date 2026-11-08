@@ -20,7 +20,6 @@ import { Navigation } from "./src/singles/Navigation";
 import { SiteSettings } from "./src/singles/SiteSettings";
 
 export default defineConfig({
-  apiPath: '/nextly-api', // Explicitly routes CMS calls away from Hono's /api
   collections: [
     Posts,
     Categories,

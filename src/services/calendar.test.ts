@@ -47,10 +47,8 @@ describe("Availability Engine", () => {
 
     await getAvailableSlots("2026-10-21", "UTC");
 
-    const calendarInstance = google.calendar({
-      version: "v3",
-      auth: {} as unknown,
-    });
+    const calendarInstance = google.calendar("v3");
+
     expect(calendarInstance.freebusy.query).toHaveBeenCalledWith(
       expect.objectContaining({
         requestBody: expect.objectContaining({

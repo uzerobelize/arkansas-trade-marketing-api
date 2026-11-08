@@ -12,6 +12,8 @@
 # next.js
 /.next/
 /out/
+/public/pagefind
+/public/search-status.json
 # production
 /build
 *.pem

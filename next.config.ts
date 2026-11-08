@@ -1,4 +1,7 @@
+import { createRequire } from "node:module";
 import type { NextConfig } from "next";
+
+const require = createRequire(import.meta.url);
 
 const nextConfig: NextConfig = {
   // Nextly runs with Cache Components and Partial Prefetching on. Its cache
@@ -7,6 +10,9 @@ const nextConfig: NextConfig = {
   // https://nextlyhq.com/docs/getting-started/installation#cache-components
   cacheComponents: true,
   output: "standalone",
+  outputFileTracingIncludes: {
+    '/**': ['./node_modules/@nextlyhq/**/*'],
+  },
   partialPrefetching: true,
   cacheHandler: require.resolve("nextly/cache-handler"),
   cacheMaxMemorySize: 0,
@@ -20,6 +26,9 @@ const nextConfig: NextConfig = {
     "sharp",
     "esbuild",
     "@nextlyhq/adapter-postgres",
+    "googleapis",
+    "gaxios",
+    "google-auth-library",
     "pg"
   ],
 };

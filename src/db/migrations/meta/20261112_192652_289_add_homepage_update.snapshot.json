@@ -1,0 +1,1781 @@
+{
+  "entities": {
+    "collections": {
+      "bookings": {
+        "settings": {
+          "fields": [
+            {
+              "name": "name",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "name": "email",
+              "required": true,
+              "type": "email"
+            },
+            {
+              "name": "phone",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "name": "startTime",
+              "required": true,
+              "type": "date"
+            },
+            {
+              "name": "endTime",
+              "type": "date"
+            },
+            {
+              "name": "timezone",
+              "type": "text"
+            },
+            {
+              "name": "notes",
+              "type": "text"
+            },
+            {
+              "defaultValue": "booked",
+              "name": "status",
+              "options": [
+                {
+                  "label": "Booked",
+                  "value": "booked"
+                },
+                {
+                  "label": "Returning Lead Booked",
+                  "value": "returning_lead_booked"
+                },
+                {
+                  "label": "Cancelled",
+                  "value": "cancelled"
+                }
+              ],
+              "required": true,
+              "type": "select"
+            }
+          ],
+          "labels": {
+            "plural": "Bookings",
+            "singular": "Booking"
+          },
+          "slug": "bookings"
+        },
+        "source": "code"
+      },
+      "categories": {
+        "settings": {
+          "admin": {
+            "pagination": {
+              "defaultLimit": 10,
+              "limits": [
+                10,
+                25,
+                50,
+                100
+              ]
+            },
+            "useAsTitle": "name"
+          },
+          "fields": [
+            {
+              "label": "Title",
+              "localized": false,
+              "name": "title",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "name": "name",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "name": "slug",
+              "required": true,
+              "type": "text",
+              "unique": true
+            },
+            {
+              "name": "icon",
+              "type": "text"
+            },
+            {
+              "name": "description",
+              "type": "textarea"
+            }
+          ],
+          "labels": {
+            "plural": "Categories",
+            "singular": "Category"
+          },
+          "slug": "categories",
+          "timestamps": true
+        },
+        "source": "code"
+      },
+      "form-submissions": {
+        "settings": {
+          "admin": {
+            "components": {
+              "views": {
+                "List": {
+                  "Component": "@nextlyhq/plugin-form-builder/admin#SubmissionsView"
+                }
+              }
+            },
+            "description": "View and manage form submissions",
+            "disableCreate": true,
+            "group": "Forms",
+            "isPlugin": true,
+            "order": 51,
+            "useAsTitle": "id"
+          },
+          "dbName": "form_submissions",
+          "fields": [
+            {
+              "admin": {
+                "description": "The form this submission belongs to",
+                "readOnly": true
+              },
+              "label": "Form",
+              "name": "form",
+              "relationTo": "forms",
+              "required": true,
+              "type": "relationship"
+            },
+            {
+              "admin": {
+                "description": "The submitted form data as JSON",
+                "readOnly": true
+              },
+              "label": "Submission Data",
+              "name": "data",
+              "required": true,
+              "type": "json"
+            },
+            {
+              "admin": {
+                "description": "Track whether this submission has been reviewed"
+              },
+              "defaultValue": "new",
+              "index": true,
+              "label": "Status",
+              "name": "status",
+              "options": [
+                {
+                  "label": "New",
+                  "value": "new"
+                },
+                {
+                  "label": "Read",
+                  "value": "read"
+                },
+                {
+                  "label": "Archived",
+                  "value": "archived"
+                },
+                {
+                  "label": "Spam",
+                  "value": "spam"
+                }
+              ],
+              "required": true,
+              "type": "select"
+            },
+            {
+              "admin": {
+                "description": "Which spam check flagged this submission (empty for clean submissions)",
+                "readOnly": true
+              },
+              "label": "Spam Reason",
+              "name": "spamReason",
+              "type": "text"
+            },
+            {
+              "admin": {
+                "description": "Notes visible only to admins (not shown to submitter)"
+              },
+              "label": "Internal Notes",
+              "name": "notes",
+              "type": "textarea"
+            },
+            {
+              "admin": {
+                "description": "IP address of the submitter",
+                "readOnly": true
+              },
+              "label": "IP Address",
+              "name": "ipAddress",
+              "type": "text"
+            },
+            {
+              "admin": {
+                "description": "Browser/device information of the submitter",
+                "readOnly": true
+              },
+              "label": "User Agent",
+              "name": "userAgent",
+              "type": "text"
+            },
+            {
+              "admin": {
+                "description": "When the form was submitted",
+                "readOnly": true
+              },
+              "index": true,
+              "label": "Submitted At",
+              "name": "submittedAt",
+              "required": true,
+              "type": "date"
+            },
+            {
+              "admin": {
+                "description": "When an admin last edited the submitted data",
+                "readOnly": true
+              },
+              "label": "Edited At",
+              "name": "editedAt",
+              "type": "date"
+            },
+            {
+              "admin": {
+                "description": "ID of the admin who last edited the submitted data",
+                "readOnly": true
+              },
+              "label": "Edited By",
+              "name": "editedBy",
+              "type": "text"
+            }
+          ],
+          "labels": {
+            "plural": "Submissions",
+            "singular": "Submission"
+          },
+          "slug": "form-submissions",
+          "timestamps": true,
+          "webhooks": {
+            "emit": {
+              "event": "form.submission.created",
+              "fields": [
+                "form",
+                "submittedAt",
+                "status"
+              ]
+            },
+            "record": false
+          }
+        },
+        "source": "code"
+      },
+      "forms": {
+        "settings": {
+          "admin": {
+            "components": {
+              "views": {
+                "Edit": {
+                  "Component": "@nextlyhq/plugin-form-builder/admin#FormBuilderView"
+                }
+              }
+            },
+            "description": "Create and manage your form templates using the visual form builder. Create and manage forms for collecting user submissions",
+            "group": "Forms",
+            "isPlugin": true,
+            "order": 50,
+            "useAsTitle": "name"
+          },
+          "dbName": "forms",
+          "fields": [
+            {
+              "admin": {
+                "description": "Internal name for this form (not shown to users)"
+              },
+              "label": "Form Name",
+              "name": "name",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "admin": {
+                "description": "URL-friendly identifier. Used in API: /api/forms/{slug}"
+              },
+              "label": "Slug",
+              "name": "slug",
+              "required": true,
+              "type": "text",
+              "unique": true
+            },
+            {
+              "admin": {
+                "description": "Internal notes about this form's purpose"
+              },
+              "label": "Description",
+              "name": "description",
+              "type": "textarea"
+            },
+            {
+              "admin": {
+                "description": "Form field configuration. Managed by the Form Builder UI."
+              },
+              "defaultValue": [],
+              "label": "Form Fields",
+              "name": "fields",
+              "required": true,
+              "type": "json"
+            },
+            {
+              "fields": [
+                {
+                  "admin": {
+                    "description": "Text displayed on the form submit button"
+                  },
+                  "defaultValue": "Submit",
+                  "label": "Submit Button Text",
+                  "name": "submitButtonText",
+                  "type": "text"
+                },
+                {
+                  "admin": {
+                    "description": "What happens after a successful form submission"
+                  },
+                  "defaultValue": "message",
+                  "label": "After Submission",
+                  "name": "confirmationType",
+                  "options": [
+                    {
+                      "label": "Show Message",
+                      "value": "message"
+                    },
+                    {
+                      "label": "Redirect to URL",
+                      "value": "redirect"
+                    }
+                  ],
+                  "type": "select"
+                },
+                {
+                  "admin": {
+                    "condition": {
+                      "equals": "message",
+                      "field": "settings.confirmationType"
+                    },
+                    "description": "Message shown after successful submission"
+                  },
+                  "defaultValue": "Thank you for your submission!",
+                  "label": "Success Message",
+                  "name": "successMessage",
+                  "type": "textarea"
+                },
+                {
+                  "admin": {
+                    "condition": {
+                      "equals": "redirect",
+                      "field": "settings.confirmationType"
+                    },
+                    "description": "URL to redirect to after submission"
+                  },
+                  "label": "Redirect URL",
+                  "name": "redirectUrl",
+                  "type": "text"
+                },
+                {
+                  "admin": {
+                    "description": "Allow the same user/IP to submit this form multiple times"
+                  },
+                  "defaultValue": true,
+                  "label": "Allow Multiple Submissions",
+                  "name": "allowMultipleSubmissions",
+                  "type": "checkbox"
+                },
+                {
+                  "admin": {
+                    "description": "Per-form honeypot override; unset inherits the plugin default"
+                  },
+                  "label": "Honeypot",
+                  "name": "honeypotEnabled",
+                  "type": "checkbox"
+                },
+                {
+                  "admin": {
+                    "description": "Per-form reCAPTCHA override; unset inherits the plugin default"
+                  },
+                  "label": "Enable reCAPTCHA",
+                  "name": "captchaEnabled",
+                  "type": "checkbox"
+                },
+                {
+                  "admin": {
+                    "condition": {
+                      "equals": true,
+                      "field": "settings.captchaEnabled"
+                    },
+                    "description": "Override the default reCAPTCHA site key for this form"
+                  },
+                  "label": "reCAPTCHA Site Key",
+                  "name": "captchaSiteKey",
+                  "type": "text"
+                }
+              ],
+              "label": "Form Settings",
+              "name": "settings",
+              "type": "group"
+            },
+            {
+              "admin": {
+                "description": "Email notification rules. Managed by the Form Builder UI."
+              },
+              "defaultValue": [],
+              "label": "Notifications",
+              "name": "notifications",
+              "type": "json"
+            },
+            {
+              "admin": {
+                "description": "Only published forms can receive submissions. Closed forms display a message instead."
+              },
+              "defaultValue": "draft",
+              "label": "Status",
+              "name": "status",
+              "options": [
+                {
+                  "label": "Draft",
+                  "value": "draft"
+                },
+                {
+                  "label": "Published",
+                  "value": "published"
+                },
+                {
+                  "label": "Closed",
+                  "value": "closed"
+                }
+              ],
+              "required": true,
+              "type": "select"
+            },
+            {
+              "admin": {
+                "description": "When this form first went live. Written once and never changed.",
+                "readOnly": true
+              },
+              "label": "First Published",
+              "name": "wentLiveAt",
+              "type": "date"
+            },
+            {
+              "admin": {
+                "condition": {
+                  "equals": "closed",
+                  "field": "status"
+                },
+                "description": "Message shown when form status is 'closed'"
+              },
+              "defaultValue": "This form is no longer accepting submissions.",
+              "label": "Closed Form Message",
+              "name": "closedMessage",
+              "type": "textarea"
+            }
+          ],
+          "labels": {
+            "plural": "Forms",
+            "singular": "Form"
+          },
+          "slug": "forms",
+          "timestamps": true
+        },
+        "source": "code"
+      },
+      "posts": {
+        "settings": {
+          "admin": {
+            "defaultColumns": [
+              "title",
+              "status",
+              "author",
+              "publishedAt"
+            ],
+            "pagination": {
+              "defaultLimit": 10,
+              "limits": [
+                10,
+                25,
+                50,
+                100
+              ]
+            },
+            "useAsTitle": "title"
+          },
+          "fields": [
+            {
+              "name": "title",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "name": "slug",
+              "required": true,
+              "type": "text",
+              "unique": true
+            },
+            {
+              "name": "content",
+              "type": "richText"
+            },
+            {
+              "name": "featuredImage",
+              "relationTo": "media",
+              "type": "upload"
+            },
+            {
+              "name": "author",
+              "relationTo": "users",
+              "type": "relationship"
+            },
+            {
+              "hasMany": true,
+              "name": "categories",
+              "relationTo": "categories",
+              "type": "relationship"
+            },
+            {
+              "hasMany": true,
+              "name": "tags",
+              "relationTo": "tags",
+              "type": "relationship"
+            },
+            {
+              "name": "excerpt",
+              "type": "textarea"
+            },
+            {
+              "name": "publishedAt",
+              "type": "date"
+            },
+            {
+              "defaultValue": false,
+              "name": "featured",
+              "type": "checkbox"
+            },
+            {
+              "fields": [
+                {
+                  "name": "metaTitle",
+                  "type": "text"
+                },
+                {
+                  "name": "metaDescription",
+                  "type": "textarea"
+                },
+                {
+                  "name": "ogImage",
+                  "relationTo": "media",
+                  "type": "upload"
+                },
+                {
+                  "name": "canonical",
+                  "type": "text"
+                },
+                {
+                  "defaultValue": false,
+                  "name": "noindex",
+                  "type": "checkbox"
+                }
+              ],
+              "name": "seo",
+              "type": "group"
+            },
+            {
+              "admin": {
+                "readOnly": true
+              },
+              "name": "readingTime",
+              "type": "number"
+            },
+            {
+              "admin": {
+                "readOnly": true
+              },
+              "name": "wordCount",
+              "type": "number"
+            }
+          ],
+          "labels": {
+            "plural": "Posts",
+            "singular": "Post"
+          },
+          "slug": "posts",
+          "status": true,
+          "timestamps": true
+        },
+        "source": "code"
+      },
+      "tags": {
+        "settings": {
+          "admin": {
+            "pagination": {
+              "defaultLimit": 10,
+              "limits": [
+                10,
+                25,
+                50,
+                100
+              ]
+            },
+            "useAsTitle": "name"
+          },
+          "fields": [
+            {
+              "label": "Title",
+              "localized": false,
+              "name": "title",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "name": "name",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "name": "slug",
+              "required": true,
+              "type": "text",
+              "unique": true
+            },
+            {
+              "name": "description",
+              "type": "textarea"
+            }
+          ],
+          "labels": {
+            "plural": "Tags",
+            "singular": "Tag"
+          },
+          "slug": "tags",
+          "timestamps": true
+        },
+        "source": "code"
+      }
+    },
+    "fieldGroups": {},
+    "singles": {
+      "homepage": {
+        "settings": {
+          "fields": [
+            {
+              "label": "Title",
+              "localized": false,
+              "name": "title",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "label": "Slug",
+              "localized": false,
+              "name": "slug",
+              "required": true,
+              "type": "text",
+              "unique": true
+            },
+            {
+              "name": "heroTagline",
+              "type": "textarea"
+            },
+            {
+              "name": "heroHeadline",
+              "required": true,
+              "type": "richText"
+            },
+            {
+              "name": "heroSubheadline",
+              "type": "textarea"
+            },
+            {
+              "name": "heroCtaButtonText",
+              "type": "text"
+            },
+            {
+              "defaultValue": true,
+              "name": "showFeaturedPost",
+              "type": "checkbox"
+            },
+            {
+              "defaultValue": "Featured",
+              "name": "featuredSectionTitle",
+              "type": "text"
+            },
+            {
+              "defaultValue": true,
+              "name": "showLatestPosts",
+              "type": "checkbox"
+            },
+            {
+              "defaultValue": "Latest",
+              "name": "latestSectionTitle",
+              "type": "text"
+            },
+            {
+              "defaultValue": 3,
+              "name": "latestPostsCount",
+              "type": "number"
+            },
+            {
+              "defaultValue": true,
+              "name": "showCategoryStrip",
+              "type": "checkbox"
+            },
+            {
+              "defaultValue": true,
+              "name": "showNewsletterCta",
+              "type": "checkbox"
+            },
+            {
+              "defaultValue": "Get new posts in your inbox",
+              "name": "newsletterHeading",
+              "type": "text"
+            },
+            {
+              "defaultValue": "No spam. Unsubscribe anytime.",
+              "name": "newsletterSubheading",
+              "type": "text"
+            }
+          ],
+          "label": {
+            "singular": "Homepage"
+          },
+          "slug": "homepage"
+        },
+        "source": "code"
+      },
+      "navigation": {
+        "settings": {
+          "fields": [
+            {
+              "label": "Title",
+              "localized": false,
+              "name": "title",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "label": "Slug",
+              "localized": false,
+              "name": "slug",
+              "required": true,
+              "type": "text",
+              "unique": true
+            },
+            {
+              "fields": [
+                {
+                  "name": "label",
+                  "required": true,
+                  "type": "text"
+                },
+                {
+                  "name": "href",
+                  "required": true,
+                  "type": "text"
+                },
+                {
+                  "defaultValue": false,
+                  "name": "openInNewTab",
+                  "type": "checkbox"
+                }
+              ],
+              "name": "headerLinks",
+              "type": "repeater"
+            },
+            {
+              "fields": [
+                {
+                  "name": "label",
+                  "required": true,
+                  "type": "text"
+                },
+                {
+                  "name": "href",
+                  "required": true,
+                  "type": "text"
+                }
+              ],
+              "name": "footerReadLinks",
+              "type": "repeater"
+            },
+            {
+              "defaultValue": true,
+              "name": "showThemeToggle",
+              "type": "checkbox"
+            },
+            {
+              "defaultValue": true,
+              "name": "showSearchIcon",
+              "type": "checkbox"
+            }
+          ],
+          "label": {
+            "singular": "Navigation"
+          },
+          "slug": "navigation"
+        },
+        "source": "code"
+      },
+      "site-settings": {
+        "settings": {
+          "fields": [
+            {
+              "label": "Title",
+              "localized": false,
+              "name": "title",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "label": "Slug",
+              "localized": false,
+              "name": "slug",
+              "required": true,
+              "type": "text",
+              "unique": true
+            },
+            {
+              "name": "siteName",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "name": "tagline",
+              "type": "text"
+            },
+            {
+              "name": "siteDescription",
+              "type": "textarea"
+            },
+            {
+              "name": "logo",
+              "relationTo": "media",
+              "type": "upload"
+            },
+            {
+              "fields": [
+                {
+                  "name": "twitter",
+                  "type": "text"
+                },
+                {
+                  "name": "github",
+                  "type": "text"
+                },
+                {
+                  "name": "linkedin",
+                  "type": "text"
+                }
+              ],
+              "name": "social",
+              "type": "group"
+            }
+          ],
+          "label": {
+            "singular": "Site Settings"
+          },
+          "slug": "site-settings"
+        },
+        "source": "code"
+      }
+    }
+  },
+  "migrationHash": "ba058379b87a7f9d19536b82b91abdfd7f00791b0153c7ea0aecf5a398871b35",
+  "snapshot": {
+    "tables": [
+      {
+        "columns": [
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "created_by",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "email",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "end_time",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "name",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "notes",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "phone",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "start_time",
+            "nullable": false,
+            "type": "timestamp"
+          },
+          {
+            "name": "status",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "timezone",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_dc_bookings_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "created_by"
+            ],
+            "name": "idx_dc_bookings_created_by",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_dc_bookings_slug",
+            "unique": true
+          }
+        ],
+        "name": "dc_bookings"
+      },
+      {
+        "columns": [
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "created_by",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "description",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "icon",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "name",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_dc_categories_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "created_by"
+            ],
+            "name": "idx_dc_categories_created_by",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_dc_categories_slug",
+            "unique": true
+          }
+        ],
+        "name": "dc_categories"
+      },
+      {
+        "columns": [
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "created_by",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "data",
+            "nullable": false,
+            "type": "jsonb"
+          },
+          {
+            "name": "edited_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "edited_by",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "form",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "ip_address",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "notes",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "spam_reason",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "status",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "submitted_at",
+            "nullable": false,
+            "type": "timestamp"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "user_agent",
+            "nullable": true,
+            "type": "text"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_dc_form_submissions_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "created_by"
+            ],
+            "name": "idx_dc_form_submissions_created_by",
+            "unique": false
+          },
+          {
+            "columns": [
+              "form"
+            ],
+            "name": "idx_dc_form_submissions_form",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_dc_form_submissions_slug",
+            "unique": true
+          },
+          {
+            "columns": [
+              "status"
+            ],
+            "name": "idx_dc_form_submissions_status",
+            "unique": false
+          },
+          {
+            "columns": [
+              "submitted_at"
+            ],
+            "name": "idx_dc_form_submissions_submitted_at",
+            "unique": false
+          }
+        ],
+        "name": "dc_form_submissions"
+      },
+      {
+        "columns": [
+          {
+            "name": "closed_message",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "created_by",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "description",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "fields",
+            "nullable": false,
+            "type": "jsonb"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "name",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "notifications",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "name": "settings",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "status",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "went_live_at",
+            "nullable": true,
+            "type": "timestamp"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_dc_forms_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "created_by"
+            ],
+            "name": "idx_dc_forms_created_by",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_dc_forms_slug",
+            "unique": true
+          }
+        ],
+        "name": "dc_forms"
+      },
+      {
+        "columns": [
+          {
+            "name": "author",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "categories",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "name": "content",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "created_by",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "excerpt",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "featured",
+            "nullable": true,
+            "type": "bool"
+          },
+          {
+            "name": "featured_image",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "first_published_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "published_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "reading_time",
+            "nullable": true,
+            "type": "int4"
+          },
+          {
+            "name": "seo",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "'draft'",
+            "name": "status",
+            "nullable": false,
+            "type": "varchar"
+          },
+          {
+            "name": "tags",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "word_count",
+            "nullable": true,
+            "type": "int4"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "author"
+            ],
+            "name": "idx_dc_posts_author",
+            "unique": false
+          },
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_dc_posts_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "created_by"
+            ],
+            "name": "idx_dc_posts_created_by",
+            "unique": false
+          },
+          {
+            "columns": [
+              "featured_image"
+            ],
+            "name": "idx_dc_posts_featured_image",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_dc_posts_slug",
+            "unique": true
+          }
+        ],
+        "name": "dc_posts"
+      },
+      {
+        "columns": [
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "created_by",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "description",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "name",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_dc_tags_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "created_by"
+            ],
+            "name": "idx_dc_tags_created_by",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_dc_tags_slug",
+            "unique": true
+          }
+        ],
+        "name": "dc_tags"
+      },
+      {
+        "columns": [
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "featured_section_title",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "hero_cta_button_text",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "hero_headline",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "hero_subheadline",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "hero_tagline",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "latest_posts_count",
+            "nullable": true,
+            "type": "int4"
+          },
+          {
+            "name": "latest_section_title",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "newsletter_heading",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "newsletter_subheading",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "show_category_strip",
+            "nullable": true,
+            "type": "bool"
+          },
+          {
+            "name": "show_featured_post",
+            "nullable": true,
+            "type": "bool"
+          },
+          {
+            "name": "show_latest_posts",
+            "nullable": true,
+            "type": "bool"
+          },
+          {
+            "name": "show_newsletter_cta",
+            "nullable": true,
+            "type": "bool"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_single_homepage_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_single_homepage_slug",
+            "unique": true
+          }
+        ],
+        "name": "single_homepage"
+      },
+      {
+        "columns": [
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "footer_read_links",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "name": "header_links",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "show_search_icon",
+            "nullable": true,
+            "type": "bool"
+          },
+          {
+            "name": "show_theme_toggle",
+            "nullable": true,
+            "type": "bool"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_single_navigation_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_single_navigation_slug",
+            "unique": true
+          }
+        ],
+        "name": "single_navigation"
+      },
+      {
+        "columns": [
+          {
+            "default": "now()",
+            "name": "created_at",
+            "nullable": true,
+            "type": "timestamp"
+          },
+          {
+            "name": "id",
+            "nullable": false,
+            "primaryKey": true,
+            "type": "text"
+          },
+          {
+            "name": "logo",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "site_description",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "site_name",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "slug",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "name": "social",
+            "nullable": true,
+            "type": "jsonb"
+          },
+          {
+            "name": "tagline",
+            "nullable": true,
+            "type": "text"
+          },
+          {
+            "name": "title",
+            "nullable": false,
+            "type": "text"
+          },
+          {
+            "default": "now()",
+            "name": "updated_at",
+            "nullable": true,
+            "type": "timestamp"
+          }
+        ],
+        "indexes": [
+          {
+            "columns": [
+              "created_at"
+            ],
+            "name": "idx_single_site_settings_created_at",
+            "unique": false
+          },
+          {
+            "columns": [
+              "logo"
+            ],
+            "name": "idx_single_site_settings_logo",
+            "unique": false
+          },
+          {
+            "columns": [
+              "slug"
+            ],
+            "name": "idx_single_site_settings_slug",
+            "unique": true
+          }
+        ],
+        "name": "single_site_settings"
+      }
+    ]
+  },
+  "version": 1
+}

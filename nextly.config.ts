@@ -75,4 +75,5 @@ export default defineConfig({
   typescript: {
     outputFile: "./src/types/generated/nextly-types.ts",
   },
+
 });

@@ -11,9 +11,9 @@ import type { NewBooking } from "../db/schema";
 import { sendNewLeadNotification } from "../services/email";
 import { sendWhatsAppBookingAlert } from '../services/whatsapp';
 
-const bookingsApi = new Hono();
+const bookingsEndpoint = new Hono();
 
-bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
+bookingsEndpoint.post("/", zValidator("json", createBookingSchema), async (c) => {
   const data = c.req.valid("json") as CreateBookingInput;
 
   try {
@@ -132,4 +132,4 @@ bookingsApi.post("/", zValidator("json", createBookingSchema), async (c) => {
   }
 });
 
-export default bookingsApi;
+export default bookingsEndpoint;

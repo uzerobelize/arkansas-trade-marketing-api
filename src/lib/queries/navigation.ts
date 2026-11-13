@@ -56,6 +56,9 @@ export const getNavigation = cache(async (): Promise<Navigation> => {
       async () => {
         const nextly = await getNextly({ config: nextlyConfig });
         const nav = await nextly.findSingle({ slug: "navigation", depth: 0 });
+
+        console.log('[[DEBUG CUSTOM]] NAVIGATION ', nav);
+
         if (!nav) return DEFAULTS;
         return {
           headerLinks:

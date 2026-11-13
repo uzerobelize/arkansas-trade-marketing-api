@@ -10,6 +10,8 @@ import { ThemeToggle } from "./ThemeToggle";
 import type { Navigation } from "@/lib/queries/navigation";
 import type { Media } from "@/lib/queries/types";
 
+import SDI_Logo from "../assets/logo.png";
+
 /**
  * Header - sticky site header with logo, primary nav, and right-side
  * icon cluster (search, theme toggle).
@@ -41,7 +43,26 @@ export function Header({ siteName, logo, navigation }: HeaderProps) {
       }}
     >
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 px-6 md:h-16">
-        <Logo siteName={siteName} logo={logo} />
+
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-sm flex items-center justify-center text-[#F9C846] font-black text-xl shadow-md">
+            <img
+              src={SDI_Logo.src}
+              alt="Company Logo"
+              className="h-10 w-auto object-contain"
+            />
+          </div>
+          <div>
+            <span className="text-xl font-extrabold tracking-tight text-[#002D3C] block leading-none">
+              SDI
+            </span>
+            <span className="text-xs font-bold text-[#0093B3] tracking-widest uppercase">
+              Workbench
+            </span>
+          </div>
+        </div>
+
+        {/*<Logo siteName={siteName} logo={logo} />*/}
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">

@@ -231,6 +231,8 @@ export function HomeClient({ content }: HomeClientProps) {
       <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#0093B3]/20 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
+           {/*
+
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-sm flex items-center justify-center text-[#F9C846] font-black text-xl shadow-md">
                 <img
@@ -248,6 +250,7 @@ export function HomeClient({ content }: HomeClientProps) {
                 </span>
               </div>
             </div>
+           */}
 
             <div className="hidden lg:flex items-center space-x-8 text-sm font-semibold text-[#002D3C]/80">
               <a
@@ -372,13 +375,13 @@ export function HomeClient({ content }: HomeClientProps) {
               <span>{heroTagline}</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#002D3C] leading-[1.1] mb-8">
-              {heroHeadline}
-            </h1>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#002D3C] leading-[1.1] mb-8"
+              dangerouslySetInnerHTML={{__html: heroHeadline}}
+            / >
 
-            <p className="text-base sm:text-xl text-[#002D3C]/80 font-medium leading-relaxed mb-10 max-w-3xl mx-auto">
-              {heroSubheadline}
-            </p>
+            <p className="text-base sm:text-xl text-[#002D3C]/80 font-medium leading-relaxed mb-10 max-w-3xl mx-auto"
+              dangerouslySetInnerHTML={{__html: heroSubheadline}}
+            / >
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
               <button

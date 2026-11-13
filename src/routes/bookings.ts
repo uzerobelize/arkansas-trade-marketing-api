@@ -67,6 +67,8 @@ bookingsEndpoint.post("/", zValidator("json", createBookingSchema), async (c) =>
             endTime: data.endTime ? new Date(data.endTime) : null,
             timezone: data.timezone || 'America/Chicago',
             status: 'booked',
+            title: data.email,
+            slug: data.email,
           } as NewBooking,
         )
         .returning();

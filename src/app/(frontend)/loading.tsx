@@ -76,17 +76,19 @@ function PostCardSkeleton() {
 }
 
 export default function Loading() {
-  return (
+  return (<>
+      {/* Page Header Skeleton
     <div className="mx-auto max-w-7xl px-6 py-20 md:py-32">
-      {/* Page Header Skeleton */}
       <div className="mb-8 h-8 w-32 animate-pulse rounded bg-neutral-200 dark:bg-neutral-800" />
+        */}
 
-      {/* Post Grid Skeleton */}
+      {/* Post Grid Skeleton
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 6 }).map((_, i) => (
           <PostCardSkeleton key={i} />
         ))}
       </div>
     </div>
-  );
+        */}
+  </>);
 }

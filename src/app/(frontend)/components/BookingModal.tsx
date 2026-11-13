@@ -137,6 +137,48 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const [bookingError, setBookingError] = useState<string | null>(null);
   const [bookingResult, setBookingResult] = useState<BookingApiResponse | null>(null);
 
+  const fetchAvailability = async () => {
+    if (!selectedDate) return;
+
+    setIsLoadingSlots(true);
+    setAvailabilityError(null);
+    setSelectedIsoSlot(""); // Reset selection on date/tz change
+
+    try {
+      const host = 'https://api.arkansastrademarketing.com';
+      const url = `/hono-api/availability?date=${encodeURIComponent(selectedDate)}&timezone=${encodeURIComponent(selectedTimezone)}`;
+      const response = await fetch(`${host}${url}`);
+
+      if (!response.ok) {
+        throw new Error(`Server returned status ${response.status}`);
+      }
+
+      const data: AvailabilityApiResponse = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      setAvailableSlots(data.availableSlots || []);
+    } catch (err) {
+      console.error("Error fetching availability slots:", err);
+      setAvailabilityError(
+        err instanceof Error
+          ? err.message
+          : "Failed to load available time slots.",
+      );
+      setAvailableSlots([]);
+    } finally {
+      setIsLoadingSlots(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen && bookingStep === 2) {
+      fetchAvailability();
+    }
+  }, [isOpen, bookingStep, selectedDate, selectedTimezone]);
+
   // Initialize live client date after mount (runs only in browser)
   useEffect(() => {
     const now = new Date();
@@ -283,42 +325,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (formErrors[field]) {
       setFormErrors((prev) => ({ ...prev, [field]: "" }));
-    }
-  };
-
-  const fetchAvailability = async () => {
-    if (!selectedDate) return;
-
-    setIsLoadingSlots(true);
-    setAvailabilityError(null);
-    setSelectedIsoSlot(""); // Reset selection on date/tz change
-
-    try {
-      const host = 'https://api.arkansastrademarketing.com';
-      const url = `/hono-api/availability?date=${encodeURIComponent(selectedDate)}&timezone=${encodeURIComponent(selectedTimezone)}`;
-      const response = await fetch(`${host}${url}`);
-
-      if (!response.ok) {
-        throw new Error(`Server returned status ${response.status}`);
-      }
-
-      const data: AvailabilityApiResponse = await response.json();
-
-      if (data.error) {
-        throw new Error(data.error);
-      }
-
-      setAvailableSlots(data.availableSlots || []);
-    } catch (err) {
-      console.error("Error fetching availability slots:", err);
-      setAvailabilityError(
-        err instanceof Error
-          ? err.message
-          : "Failed to load available time slots.",
-      );
-      setAvailableSlots([]);
-    } finally {
-      setIsLoadingSlots(false);
     }
   };
 

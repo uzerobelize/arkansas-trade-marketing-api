@@ -16,6 +16,8 @@ import { getNavigation } from "@/lib/queries/navigation";
 import { getSiteSettings } from "@/lib/queries/site-settings";
 import { getAllCategories } from "@/lib/queries/categories";
 
+import "./frontend.css";
+
 export default async function BlogFrontendLayout({
   children,
 }: {

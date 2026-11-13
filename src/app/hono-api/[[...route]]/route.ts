@@ -6,12 +6,6 @@ import availabilityEndpoint from '@/routes/availability';
 
 const app = new Hono().basePath('/hono-api');
 
-// app.use('/*', cors({
-//   origin: ['https://arkansastrademarketing.com'],
-//   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowHeaders: ['Content-Type', 'Authorization'],
-// }))
-
 app.get('/health', (c) => c.json({ status: 'ok', provider: 'supabase' }));
 app.route('/bookings', bookingsEndpoint);
 app.route('/availability', availabilityEndpoint);

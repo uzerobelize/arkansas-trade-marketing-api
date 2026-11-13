@@ -11,15 +11,12 @@ import { defineSingle, text, textarea, checkbox, number, richText} from "nextly/
 
 export const Homepage = defineSingle({
   slug: "homepage",
-  access: {
-    read: "anyone",
-  },
   label: { singular: "Homepage" },
   fields: [
-    textarea({ name: "heroTagline" }),
-    text({ name: "heroHeadline", required: true }),
-    textarea({ name: "heroSubheadline" }),
-    text({ name: "heroCtaButtonText" }),
+    textarea({ name: "hero_tagline" }),
+    text({ name: "hero_headline", required: true }),
+    textarea({ name: "hero_subheadline" }),
+    text({ name: "hero_cta_buttonText" }),
 
     checkbox({ name: "showFeaturedPost", defaultValue: true }),
     text({ name: "featuredSectionTitle", defaultValue: "Featured" }),

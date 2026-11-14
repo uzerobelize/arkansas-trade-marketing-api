@@ -1,0 +1,18 @@
+{
+  "app": {
+    "[project]/src/app/(frontend)/authors/[slug]/page": [],
+    "[project]/src/app/(frontend)/blog/[slug]/page": [],
+    "[project]/src/app/(frontend)/blog/page": [],
+    "[project]/src/app/(frontend)/categories/[slug]/page": [],
+    "[project]/src/app/(frontend)/categories/page": [],
+    "[project]/src/app/(frontend)/page": [],
+    "[project]/src/app/(frontend)/search/page": [],
+    "[project]/src/app/(frontend)/tags/[slug]/page": [],
+    "[project]/src/app/(frontend)/tags/page": [],
+    "[project]/src/app/_not-found/page": [],
+    "[project]/src/app/admin/[[...params]]/page": []
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

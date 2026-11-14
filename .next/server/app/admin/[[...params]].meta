@@ -1,0 +1,42 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</>; rel=preconnect; crossorigin=\"\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/[[...params]]/layout,_N_T_/admin/[[...params]]/page"
+  },
+  "postponed": "2840:10[\"params\"][1,{\"nextSegmentId\":1,\"rootFormatContext\":{\"insertionMode\":0,\"selectedValue\":null,\"tagScope\":0,\"viewTransition\":null},\"progressiveChunkSize\":12800,\"resumableState\":{\"idPrefix\":\"\",\"nextFormID\":0,\"streamingFormat\":0,\"instructions\":96,\"hasBody\":true,\"hasHtml\":true,\"unknownResources\":{},\"dnsResources\":{},\"connectResources\":{\"default\":{},\"anonymous\":{\"/\":null},\"credentials\":{}},\"imageResources\":{},\"styleResources\":{\"/_next/static/chunks/2vn-dz6r83p0y.css\":null,\"/_next/static/chunks/0c923j7m_jdql.css\":[]},\"scriptResources\":{\"/_next/static/chunks/0o_iu04f6t0e7.js\":null,\"/_next/static/chunks/3fus74q3gq13p.js\":null,\"/_next/static/chunks/13jwx93ue3ztq.js\":null,\"/_next/static/chunks/07v_h8cq-thdb.js\":null,\"/_next/static/chunks/turbopack-077hmtqrhcoji.js\":null,\"/_next/static/chunks/00-f9varjmeiy.js\":null,\"/_next/static/chunks/3e2n345jitsha.js\":null,\"/_next/static/chunks/2k8g3mb1tihx-.js\":null,\"/_next/static/chunks/3escxbf3k3ima.js\":null,\"/_next/static/chunks/0vczanpbfuj5y.js\":null,\"/_next/static/chunks/3hsj21vvy6wml.js\":null,\"/_next/static/chunks/1r7mram6afopt.js\":null,\"/_next/static/chunks/1v38259o7-fie.js\":null,\"/_next/static/chunks/2smlhm2o4j1vt.js\":null,\"/_next/static/chunks/2p35jkzod_229.js\":null,\"/_next/static/chunks/2wj1p2bm16zsy.js\":null,\"/_next/static/chunks/1pqmvvtfh8nia.js\":null,\"/_next/static/chunks/2l0xys559awoe.js\":null},\"moduleUnknownResources\":{},\"moduleScriptResources\":{\"/_next/static/chunks/0o_iu04f6t0e7.js\":null}},\"replayNodes\":[[\"sl\",0,[[\"Context\",0,[[\"Context\",0,[[\"ServerInsertedHTMLProvider\",0,[[\"Context\",0,[[\"il\",0,[[\"aW\",0,[[\"aV\",0,[[\"az\",0,[[\"io\",0,[[\"Fragment\",0,[[\"Context\",2,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"aW\",0,[[\"aV\",0,[[\"az\",0,[[\"as\",0,[[\"ai\",0,[[\"__next_root_layout_boundary__\",1,[[\"Fragment\",\"c\",[[\"html\",1,[[\"body\",1,[[null,0,[[\"Activity\",\"admin\",[[\"Context\",\"admin\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"m\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"params|oc\",[[\"Context\",\"params|oc\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"Fragment\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"Fragment\",1,[[\"Suspense\",1,[],0,[\"Suspense Fallback\",1,[],null],0]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],\"replaySlots\":null}]null",
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/admin/$oc$params/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49216,
+    "slots": {
+      "children": {
+        "hints": 49248,
+        "slots": {
+          "children": {
+            "hints": 49248,
+            "slots": {
+              "children": {
+                "hints": 49312,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/cc8a3aa6b019e17897c2d704bb54cc970eed9423820a383e382e9d8ec5387a07/$/admin/[[...params]]",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/admin/[[...params]]/page"
+    },
+    "isFallback": true
+  }
+}

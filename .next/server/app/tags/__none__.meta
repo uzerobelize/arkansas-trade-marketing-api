@@ -1,0 +1,48 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</>; rel=preconnect; crossorigin=\"\", </_next/static/media/logo.0k5iiw50j8t8n.png>; rel=preload; as=\"image\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/tags/layout,_N_T_/(frontend)/tags/[slug]/layout,_N_T_/(frontend)/tags/[slug]/page,_N_T_/tags/__none__,nextly:single:site-settings,nextly:single:navigation,nextly:categories"
+  },
+  "postponed": "3317:[1,{\"nextSegmentId\":2,\"rootFormatContext\":{\"insertionMode\":0,\"selectedValue\":null,\"tagScope\":0,\"viewTransition\":null},\"progressiveChunkSize\":12800,\"resumableState\":{\"idPrefix\":\"\",\"nextFormID\":0,\"streamingFormat\":0,\"instructions\":112,\"hasBody\":true,\"hasHtml\":true,\"unknownResources\":{},\"dnsResources\":{},\"connectResources\":{\"default\":{},\"anonymous\":{\"/\":null},\"credentials\":{}},\"imageResources\":{\"/_next/static/media/logo.0k5iiw50j8t8n.png\":[]},\"styleResources\":{\"/_next/static/chunks/2vn-dz6r83p0y.css\":null,\"/_next/static/chunks/0ioix9han-o2g.css\":null},\"scriptResources\":{\"/_next/static/chunks/0o_iu04f6t0e7.js\":null,\"/_next/static/chunks/3fus74q3gq13p.js\":null,\"/_next/static/chunks/13jwx93ue3ztq.js\":null,\"/_next/static/chunks/07v_h8cq-thdb.js\":null,\"/_next/static/chunks/turbopack-077hmtqrhcoji.js\":null,\"/_next/static/chunks/00-f9varjmeiy.js\":null,\"/_next/static/chunks/3e2n345jitsha.js\":null,\"/_next/static/chunks/2l0xys559awoe.js\":null,\"/_next/static/chunks/2dilv_3zjw8o6.js\":null,\"/_next/static/chunks/0g6bvflk997ui.js\":null,\"/_next/static/chunks/2h0cso6lnqto_.js\":null},\"moduleUnknownResources\":{},\"moduleScriptResources\":{\"/_next/static/chunks/0o_iu04f6t0e7.js\":null}},\"replayNodes\":[[\"sl\",0,[[\"Context\",0,[[\"Context\",0,[[\"ServerInsertedHTMLProvider\",0,[[\"Context\",0,[[\"il\",0,[[\"aW\",0,[[\"aV\",0,[[\"az\",0,[[\"io\",0,[[\"Fragment\",0,[[\"Context\",2,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"aW\",0,[[\"aV\",0,[[\"az\",0,[[\"as\",0,[[\"ai\",0,[[\"__next_root_layout_boundary__\",1,[[\"Fragment\",\"c\",[[\"html\",1,[[\"body\",1,[[null,0,[[\"Activity\",\"(frontend)\",[[\"Context\",\"(frontend)\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"m\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[null,0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"div\",1,[[\"main\",2,[[null,0,[[\"Activity\",\"tags\",[[\"Context\",\"tags\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"m\",0,[[\"G\",0,[[\"Suspense\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"slug|d\",[[\"Context\",\"slug|d\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"Fragment\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"__PAGE__\",[[\"Context\",\"__PAGE__\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"Fragment\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[],{\"0\":1}]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null,[\"Suspense Fallback\",0,[],null],0]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],\"replaySlots\":null}]eJzFVV1zmzgU/S88ux0+7ZCZPsQfYLHIbghGlhI/AMJGWIDXYAxk8t93ZDdNurvd6cxmpm9wdYTuPTrn8CxVdXlMpNtnaZvUcSrdPr8MpDiM00vt8UnaysbQ0BWZxlEUaYaxVcwbXaZRKKvKNlJGcbxNNHmkjeiTNHh8kh6fnp6kihU7noinwfW1Tj5VSV2zYleJwuaKLZK25t3tFX37I0raDLYhr5KNAE6d6N4o6DrpjPTPJfu6p45yeJI2G9FkUtTHTjw0IT8l0q0EpyVzZnct2JXtsqhYrHKZrIw0Qiu2ZM44zq0jRkaP13AXzJ2U2Kudj6wuVAM5REYB2JlR2yoim5/IAxgC7pWRFhTh3OuBbZ7AnHLMxnuyJjyyzXOEghOdgAoUiwO1gxlZL7I452dq8yZiYAj2sx3O24Z0Y0YRr+hkrIVrrwQzgydzr0oedOZOnCpSaQOywwjkfA+yki2mO51ksw73u5qgVYcfZBlOge76+3YxvathH2TL6b0Mp1hdTO960TfJeUXQ66ygg1Oguv2sdXsvgwh3OAdn17eyJYL1Ykpy3CkM2lbq+nsNq0EK+1gjCGiYKZd+3GJ8Ih2oQG52IaKHKLcq74cznL/hlEOEglWyHnMxQ4iUlKirJravvMYqHwpOYY8V2K8qUNADmXslyMoWTu/O7sQpCeJFOL9ny2x2htO7CuSeEueWHCLzBLLDiaK2cieOEudnMWND1+MqUq193N183LyFV1KksCi3DpEVdNEEDAEzldhuG4y83u3BGWa4gf6sITY+4yzluMf1oqf75USWoR/sXT9lJLuvsZ+m0IcGRLBb2qB119dvr9W2IerN6ZUbkpsZRi1+N2MeqYs0svZsmRtKZJ8rkFsVtTyeCH6+1xZpPPcOkaq/1QovJRp8hyFNZHs83gttvePwOg8nM8cQ90V8Z4/9nQp7XJMpZUuhOYRlF81UmMGa+DMdItiSaXwm2SK/eOUb/wR5Y3rhyZvB7K5bMLmFD3ILlfsOTst+0ZfK4kHXYDYOv+3b47U425LF2c7s/np//qx1/VkfTMF5mUFtma0UN4s7aJVs+yA0ZGYhsqqrV+iB2qmChc/Y5d6Et2SyBkIbF1+FyDgS5B0uXmSOub0vv0gDqQ53lXT7+F8pJG0GUlWHPJFuNVkeSDXLk6oO84N0q4xMfTjUNEOXDf2zZhijgZS0BybCVFdN3RyOVFMfSMekCTmjYf1D/UUshNQry/preAzzRZgnopnNy+CjQrcIG7YLa1YWP03cd5APjNvQDlJiB51v81MoJMjrEcjTjiAs4qKkc+8c92XjqoGOkXKO7NUJq2YtJBHZFiNI2NqxEtuqY7vll7o25tGen/w80ALbYiA75Bi1PVnLVdI5ZZwH+SVu5p4cz+HQ7Uz+ut/NF030IKKpTXEeVAK3UtMDKe6FPJrYDk4PyFiSNV1hBNgyJ2k0X/BtIF9to3k85g7HyINCSnEHhkiRRdyXkUZXoR3UJPAaotJKRBvJrSpWV6/rPkFWh9XUweolvl77/uOnEny7ll/Wn3Ez/O36i8M62ZVHllTfNRhy/k/xvcN9lOp4TSe7L/9i6rezfpnKoWH+diojXu4+bcuyTo6fuiQ8fidxM7gZ6rL8f/nKLj+vdwr8FXJU3fhsyvrNGznKSL0R8PfEXPr7OScvAykp4mN3qBM6Lk8FvTuKBp5fXl7+Aging3U=",
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ",
+    "/!KGZyb250ZW5kKQ/tags/$d$slug/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 16448,
+    "slots": {
+      "children": {
+        "hints": 16416,
+        "slots": {
+          "children": {
+            "hints": 16448,
+            "slots": {
+              "children": {
+                "hints": 16480,
+                "slots": {
+                  "children": {
+                    "hints": 16544,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/ec5fd8303ffbf1df31093addc4e4b6f68079940bf97b12fd33eb52638a388762/$/tags/__none__",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(frontend)/tags/[slug]/page"
+    },
+    "isFallback": false
+  }
+}

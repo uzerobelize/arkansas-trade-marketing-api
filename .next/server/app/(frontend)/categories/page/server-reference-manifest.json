@@ -1,0 +1,25 @@
+{
+  "node": {
+    "f0565410dcbbb355f19840dba021fb17ccfe30737d": {
+      "workers": {
+        "app/(frontend)/categories/page": {
+          "moduleId": 362958,
+          "async": true
+        }
+      },
+      "exportedName": "$$RSC_SERVER_CACHE_0",
+      "filename": "src/nextly/cached-read.ts"
+    },
+    "4020d7e593f048aae299b6acea55dc0f3f8b98478f": {
+      "workers": {
+        "app/(frontend)/categories/page": {
+          "moduleId": 362958,
+          "async": true
+        }
+      },
+      "exportedName": "submitNewsletter",
+      "filename": "src/actions/submit-newsletter.ts"
+    }
+  },
+  "edge": {}
+}

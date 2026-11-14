@@ -1,0 +1,37 @@
+3:"$Sreact.fragment"
+4:"/_next/static/chunks/00-f9varjmeiy.js"
+5:I[339756,["$4"],"default"]
+6:I[837457,["$4"],"default"]
+e:I[897367,["$4"],"OutletBoundary"]
+f:"$Sreact.suspense"
+13:"ViewportBoundary"
+14:I[897367,["$4"],"$13"]
+15:"MetadataBoundary"
+16:I[897367,["$4"],"$15"]
+8:X
+8:C
+9:X
+9:300
+9:300
+12:X
+c:[["children",{"s":"__PAGE__","h":49314,"d":{"r":["$","$3","c",{"children":["$Ld",[["$","script","script-0",{"src":"/_next/static/chunks/2h0cso6lnqto_.js","async":true}]],["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]]}],"p":"$@11","v":"$12","s":"$9"}}]]
+a:[["children",{"s":{"n":"slug","t":"d","k":null,"s":[]},"h":49250,"d":{"r":["$","$3","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@b","v":"$8","s":"$9"},"c":"$Qc"}]]
+2:[["children",{"s":"authors","h":49218,"d":{"r":["$","$3","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"}]]
+1:[["children",{"s":"(frontend)","h":49190,"c":"$Q2"}]]
+19:X
+1c:X
+0:{"t":{"t":{"s":"","h":49242,"c":"$Q1"},"h":{"r":["$","$3","h",{"children":[null,["$","$L14",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$f",null,{"name":"Next.Metadata","children":"$L17"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@18","v":"$19","s":"$9"}},"a":"$@1a","u":"$@1b","b":"DJbQ5ndXey5hqOiPkdJ1p","r":"$1c"}
+1d:I[27201,["$4"],"IconMark"]
+12:T4,slug19:T4,slug9:C
+19:C
+1c:C
+12:C
+10:null
+17:[["$","title","0",{"children":"Nextly"}],["$","meta","1",{"name":"description","content":"A blog built with Nextly."}],["$","meta","2",{"property":"og:title","content":"Nextly"}],["$","meta","3",{"property":"og:description","content":"A blog built with Nextly."}],["$","meta","4",{"property":"og:image","content":"https://api.arkansastrademarketing.com/admin/authors/__none__/opengraph-image-1eyexv?03e49eecdaa4cd64"}],["$","meta","5",{"property":"og:image:type","content":"image/png"}],["$","meta","6",{"property":"og:image:width","content":"1200"}],["$","meta","7",{"property":"og:image:height","content":"630"}],["$","meta","8",{"property":"og:image:alt","content":"Author cover image"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Nextly"}],["$","meta","11",{"name":"twitter:description","content":"A blog built with Nextly."}],["$","meta","12",{"name":"twitter:image","content":"https://api.arkansastrademarketing.com/admin/authors/__none__/opengraph-image-1eyexv?03e49eecdaa4cd64"}],["$","meta","13",{"name":"twitter:image:alt","content":"Author cover image"}],["$","meta","14",{"name":"twitter:image:type","content":"image/png"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?favicon.35k9pu78uop64.ico","sizes":"32x32","type":"image/x-icon"}],["$","$L1d","18",{}]]
+1b:false
+d:E{"digest":"NEXT_HTTP_ERROR_FALLBACK;404"}
+1a:1647
+b:"$undefined"
+7:"$undefined"
+18:"$undefined"
+11:"$undefined"

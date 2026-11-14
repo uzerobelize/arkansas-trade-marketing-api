@@ -1,0 +1,138 @@
+{
+  "node": {
+    "f0565410dcbbb355f19840dba021fb17ccfe30737d": {
+      "workers": {
+        "app/(frontend)/authors/[slug]/feed.xml/route": {
+          "moduleId": 531222,
+          "async": true
+        },
+        "app/(frontend)/authors/[slug]/opengraph-image-1eyexv/route": {
+          "moduleId": 937996,
+          "async": true
+        },
+        "app/(frontend)/authors/[slug]/page": {
+          "moduleId": 898593,
+          "async": true
+        },
+        "app/(frontend)/blog/[slug]/opengraph-image-1g8epz/route": {
+          "moduleId": 385331,
+          "async": true
+        },
+        "app/(frontend)/blog/[slug]/page": {
+          "moduleId": 1808,
+          "async": true
+        },
+        "app/(frontend)/blog/page": {
+          "moduleId": 99944,
+          "async": true
+        },
+        "app/(frontend)/categories/[slug]/feed.xml/route": {
+          "moduleId": 621154,
+          "async": true
+        },
+        "app/(frontend)/categories/[slug]/opengraph-image-eue198/route": {
+          "moduleId": 946784,
+          "async": true
+        },
+        "app/(frontend)/categories/[slug]/page": {
+          "moduleId": 667996,
+          "async": true
+        },
+        "app/(frontend)/categories/page": {
+          "moduleId": 362958,
+          "async": true
+        },
+        "app/(frontend)/feed.xml/route": {
+          "moduleId": 633590,
+          "async": true
+        },
+        "app/(frontend)/page": {
+          "moduleId": 209641,
+          "async": true
+        },
+        "app/(frontend)/search/page": {
+          "moduleId": 839822,
+          "async": true
+        },
+        "app/(frontend)/tags/[slug]/feed.xml/route": {
+          "moduleId": 579679,
+          "async": true
+        },
+        "app/(frontend)/tags/[slug]/opengraph-image-qi2j7p/route": {
+          "moduleId": 877906,
+          "async": true
+        },
+        "app/(frontend)/tags/[slug]/page": {
+          "moduleId": 148432,
+          "async": true
+        },
+        "app/(frontend)/tags/page": {
+          "moduleId": 723546,
+          "async": true
+        },
+        "app/_not-found/page": {
+          "moduleId": 195640,
+          "async": true
+        },
+        "app/admin/[[...params]]/page": {
+          "moduleId": 390161,
+          "async": true
+        },
+        "app/opengraph-image/route": {
+          "moduleId": 123155,
+          "async": true
+        },
+        "app/sitemap.xml/route": {
+          "moduleId": 638769,
+          "async": true
+        }
+      },
+      "filename": "src/nextly/cached-read.ts",
+      "exportedName": "$$RSC_SERVER_CACHE_0"
+    },
+    "4020d7e593f048aae299b6acea55dc0f3f8b98478f": {
+      "workers": {
+        "app/(frontend)/authors/[slug]/page": {
+          "moduleId": 898593,
+          "async": true
+        },
+        "app/(frontend)/blog/[slug]/page": {
+          "moduleId": 1808,
+          "async": true
+        },
+        "app/(frontend)/blog/page": {
+          "moduleId": 99944,
+          "async": true
+        },
+        "app/(frontend)/categories/[slug]/page": {
+          "moduleId": 667996,
+          "async": true
+        },
+        "app/(frontend)/categories/page": {
+          "moduleId": 362958,
+          "async": true
+        },
+        "app/(frontend)/page": {
+          "moduleId": 209641,
+          "async": true
+        },
+        "app/(frontend)/search/page": {
+          "moduleId": 839822,
+          "async": true
+        },
+        "app/(frontend)/tags/[slug]/page": {
+          "moduleId": 148432,
+          "async": true
+        },
+        "app/(frontend)/tags/page": {
+          "moduleId": 723546,
+          "async": true
+        }
+      },
+      "filename": "src/actions/submit-newsletter.ts",
+      "exportedName": "submitNewsletter"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "FMuF9JudBaPggEjkveG+Z1yLT98JM0xhAnNLZ1hcerQ="
+}

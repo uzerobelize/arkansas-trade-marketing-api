@@ -1,0 +1,36 @@
+3:"$Sreact.fragment"
+4:"/_next/static/chunks/00-f9varjmeiy.js"
+5:I[339756,["$4"],"default"]
+6:I[837457,["$4"],"default"]
+b:"/_next/static/chunks/2dilv_3zjw8o6.js"
+c:"/_next/static/chunks/17dxx4ii516x-.js"
+d:I[814486,["$b","$c"],"SearchInput"]
+e:I[897367,["$4"],"OutletBoundary"]
+f:"$Sreact.suspense"
+13:"ViewportBoundary"
+14:I[897367,["$4"],"$13"]
+15:"MetadataBoundary"
+16:I[897367,["$4"],"$15"]
+17:I[27201,["$4"],"IconMark"]
+8:X
+8:C
+9:X
+9:300
+9:300
+9:C
+12:X
+12:C
+a:[["children",{"s":"__PAGE__","h":49314,"d":{"r":["$","$3","c",{"children":[["$","div",null,{"className":"mx-auto max-w-7xl px-6 py-20 md:py-32","children":[["$","header",null,{"className":"mb-12 md:mb-16","children":["$undefined",["$","h1",null,{"className":"text-3xl font-bold tracking-tightest-premium sm:text-5xl","style":{"color":"var(--color-fg)"},"children":"Search"}],["$","p",null,{"className":"mt-6 max-w-2xl text-base leading-relaxed sm:text-lg","style":{"color":"var(--color-fg-muted)"},"children":"Find posts by keyword. Results update as you type."}],"$undefined",["$","div",null,{"className":"mt-10 h-px","style":{"background":"var(--color-border)"}}]]}],["$","$Ld",null,{}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/17dxx4ii516x-.js","async":true}]],["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]]}],"p":"$@11","v":"$12","s":"$9"}}]]
+2:[["children",{"s":"search","h":49218,"d":{"r":["$","$3","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"}]]
+1:[["children",{"s":"(frontend)","h":49190,"c":"$Q2"}]]
+19:X
+19:C
+1c:X
+1c:C
+0:{"t":{"t":{"s":"","h":49242,"c":"$Q1"},"h":{"r":["$","$3","h",{"children":[null,["$","$L14",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$f",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Search — Nextly"}],["$","meta","1",{"name":"description","content":"Search all posts."}],["$","meta","2",{"name":"robots","content":"noindex, follow"}],["$","link","3",{"rel":"canonical","href":"https://api.arkansastrademarketing.com/admin/search"}],["$","meta","4",{"property":"og:title","content":"Search — Nextly"}],["$","meta","5",{"property":"og:description","content":"Search all posts."}],["$","meta","6",{"property":"og:image","content":"https://api.arkansastrademarketing.com/admin/opengraph-image?adb1f4a6992ac601"}],["$","meta","7",{"property":"og:image:type","content":"image/png"}],["$","meta","8",{"property":"og:image:width","content":"1200"}],["$","meta","9",{"property":"og:image:height","content":"630"}],["$","meta","10",{"property":"og:image:alt","content":"Site cover image"}],["$","meta","11",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","12",{"name":"twitter:title","content":"Search — Nextly"}],["$","meta","13",{"name":"twitter:description","content":"Search all posts."}],["$","meta","14",{"name":"twitter:image","content":"https://api.arkansastrademarketing.com/admin/opengraph-image?adb1f4a6992ac601"}],["$","meta","15",{"name":"twitter:image:alt","content":"Site cover image"}],["$","meta","16",{"name":"twitter:image:type","content":"image/png"}],["$","meta","17",{"name":"twitter:image:width","content":"1200"}],["$","meta","18",{"name":"twitter:image:height","content":"630"}],["$","link","19",{"rel":"icon","href":"/favicon.ico?favicon.35k9pu78uop64.ico","sizes":"32x32","type":"image/x-icon"}],["$","$L17","20",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@18","v":"$19","s":"$9"}},"a":"$@1a","u":"$@1b","b":"DJbQ5ndXey5hqOiPkdJ1p","r":"$1c"}
+10:null
+1b:false
+1a:null
+7:"$undefined"
+18:"$undefined"
+11:"$undefined"

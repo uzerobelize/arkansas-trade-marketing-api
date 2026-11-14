@@ -1,0 +1,3 @@
+module.exports=[213809,a=>a.a(async(b,c)=>{try{var d=a.i(165290),e=a.i(572131),f=a.i(187924),g=b([d]);[d]=g.then?(await g)():g,a.s(["default",0,function(){return(0,e.useEffect)(()=>{(0,d.fr)(d.Lo.BUILDER_FIELD_GROUPS)},[]),(0,f.jsx)("div",{className:"h-32","aria-hidden":"true"})}]),c()}catch(a){c(a)}},!1)];
+
+//# sourceMappingURL=1sxh_page_dashboard_redirects_FieldGroupsLandingRedirect-DjCi2YN5_mjs_1_e-b13bkoem7._.js.map

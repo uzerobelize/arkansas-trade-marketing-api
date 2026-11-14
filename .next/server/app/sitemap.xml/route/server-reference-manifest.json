@@ -1,0 +1,15 @@
+{
+  "node": {
+    "f0565410dcbbb355f19840dba021fb17ccfe30737d": {
+      "workers": {
+        "app/sitemap.xml/route": {
+          "moduleId": 638769,
+          "async": true
+        }
+      },
+      "exportedName": "$$RSC_SERVER_CACHE_0",
+      "filename": "src/nextly/cached-read.ts"
+    }
+  },
+  "edge": {}
+}

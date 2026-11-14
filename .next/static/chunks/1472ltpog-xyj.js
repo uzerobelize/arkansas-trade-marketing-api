@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,929330,e=>{"use strict";var t=e.i(888733),i=e.i(271645),r=e.i(843476);e.s(["default",0,function(){return(0,i.useEffect)(()=>{(0,t.fr)(t.Lo.BUILDER_FIELD_GROUPS)},[]),(0,r.jsx)("div",{className:"h-32","aria-hidden":"true"})}])}]);

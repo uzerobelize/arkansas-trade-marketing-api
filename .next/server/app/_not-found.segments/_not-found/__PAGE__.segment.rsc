@@ -1,0 +1,37 @@
+1:"$Sreact.fragment"
+2:"/_next/static/chunks/00-f9varjmeiy.js"
+3:I[339756,["$2"],"default"]
+4:"/_next/static/chunks/3e2n345jitsha.js"
+5:I[758298,["$4"],"default"]
+6:I[837457,["$2"],"default"]
+e:I[897367,["$2"],"OutletBoundary"]
+f:"$Sreact.suspense"
+13:"ViewportBoundary"
+14:I[897367,["$2"],"$13"]
+15:"MetadataBoundary"
+16:I[897367,["$2"],"$15"]
+17:I[27201,["$2"],"IconMark"]
+:HL["/_next/static/chunks/2vn-dz6r83p0y.css","style"]
+8:X
+8:C
+9:X
+9:300
+9:C
+c:X
+c:C
+12:X
+12:C
+d:[["children",{"s":"__PAGE__","h":49314,"d":{"r":["$","$1","c",{"children":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:t:t:d:r:props:children:1:props:children:1:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:t:t:d:r:props:children:1:props:children:1:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:t:t:d:r:props:children:1:props:children:1:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:t:t:d:r:props:children:1:props:children:1:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],null,["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]]}],"p":"$@11","v":"$12","s":"$9"}}]]
+a:[["children",{"s":"/_not-found","h":49250,"d":{"r":["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@b","v":"$c","s":"$9"},"c":"$Qd"}]]
+19:X
+19:C
+1c:X
+1c:C
+0:{"t":{"t":{"s":"","h":49234,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2vn-dz6r83p0y.css","precedence":"next"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n(function() {\n  try {\n    var stored = localStorage.getItem(\"nextly-theme\");\n    // The same three choices, and the same fallback, as the theme toggle's\n    // reading of this key, so the first paint and hydration never disagree.\n    var pref = stored === \"light\" || stored === \"dark\" || stored === \"system\" ? stored : \"system\";\n    var prefersDark = window.matchMedia(\"(prefers-color-scheme: dark)\").matches;\n    var isDark = pref === \"dark\" || (pref === \"system\" && prefersDark);\n    document.documentElement.dataset.theme = isDark ? \"dark\" : \"light\";\n  } catch (e) {}\n})();\n"}}]}],["$","body",null,{"className":"antialiased","suppressHydrationWarning":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$5","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/3e2n345jitsha.js","async":true}]],"template":["$","$L6",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}]}]]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"},"h":{"r":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L14",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$f",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Nextly"}],["$","meta","1",{"name":"description","content":"A blog built with Nextly."}],["$","meta","2",{"property":"og:title","content":"Nextly"}],["$","meta","3",{"property":"og:description","content":"A blog built with Nextly."}],["$","meta","4",{"property":"og:image","content":"https://api.arkansastrademarketing.com/admin/opengraph-image?adb1f4a6992ac601"}],["$","meta","5",{"property":"og:image:type","content":"image/png"}],["$","meta","6",{"property":"og:image:width","content":"1200"}],["$","meta","7",{"property":"og:image:height","content":"630"}],["$","meta","8",{"property":"og:image:alt","content":"Site cover image"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Nextly"}],["$","meta","11",{"name":"twitter:description","content":"A blog built with Nextly."}],["$","meta","12",{"name":"twitter:image","content":"https://api.arkansastrademarketing.com/admin/opengraph-image?adb1f4a6992ac601"}],["$","meta","13",{"name":"twitter:image:alt","content":"Site cover image"}],["$","meta","14",{"name":"twitter:image:type","content":"image/png"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?favicon.35k9pu78uop64.ico","sizes":"32x32","type":"image/x-icon"}],["$","$L17","18",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@18","v":"$19","s":"$9"}},"a":"$@1a","u":"$@1b","b":"DJbQ5ndXey5hqOiPkdJ1p","r":"$1c"}
+10:null
+1b:false
+1a:null
+b:"$undefined"
+7:"$undefined"
+18:"$undefined"
+11:"$undefined"

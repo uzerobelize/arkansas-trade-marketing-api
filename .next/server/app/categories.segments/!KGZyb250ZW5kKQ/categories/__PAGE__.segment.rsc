@@ -1,0 +1,33 @@
+3:"$Sreact.fragment"
+4:"/_next/static/chunks/00-f9varjmeiy.js"
+5:I[339756,["$4"],"default"]
+6:I[837457,["$4"],"default"]
+b:I[897367,["$4"],"OutletBoundary"]
+c:"$Sreact.suspense"
+10:"ViewportBoundary"
+11:I[897367,["$4"],"$10"]
+12:"MetadataBoundary"
+13:I[897367,["$4"],"$12"]
+14:I[27201,["$4"],"IconMark"]
+8:X
+8:C
+9:X
+9:300
+9:300
+9:C
+f:X
+f:C
+a:[["children",{"s":"__PAGE__","h":49314,"d":{"r":["$","$3","c",{"children":[["$","div",null,{"className":"mx-auto max-w-7xl px-6 py-20 md:py-32","children":[["$","header",null,{"className":"mb-12 md:mb-16","children":["$undefined",["$","h1",null,{"className":"text-3xl font-bold tracking-tightest-premium sm:text-5xl","style":{"color":"var(--color-fg)"},"children":"Categories"}],["$","p",null,{"className":"mt-6 max-w-2xl text-base leading-relaxed sm:text-lg","style":{"color":"var(--color-fg-muted)"},"children":"Posts grouped by topic. Each category has a dedicated feed and archive page."}],"$undefined",["$","div",null,{"className":"mt-10 h-px","style":{"background":"var(--color-border)"}}]]}],["$","div",null,{"className":"flex flex-col items-center justify-center py-24 px-6 text-center","style":{"color":"var(--color-fg-muted)"},"children":[["$","div",null,{"className":"mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full","style":{"background":"var(--color-bg)","border":"1px solid var(--color-border)"},"children":["$","svg",null,{"className":"h-8 w-8","fill":"none","stroke":"currentColor","viewBox":"0 0 24 24","xmlns":"http://www.w3.org/2000/svg","children":["$","path",null,{"strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":1.5,"d":"M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"}]}]}],["$","h3",null,{"className":"mb-2 text-lg font-semibold","style":{"color":"var(--color-fg)"},"children":"No posts yet"}],["$","p",null,{"className":"max-w-md text-sm","children":"Posts will appear here once they're published."}]]}]]}],null,["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]]}],"p":"$@e","v":"$f","s":"$9"}}]]
+2:[["children",{"s":"categories","h":49218,"d":{"r":["$","$3","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"}]]
+1:[["children",{"s":"(frontend)","h":49190,"c":"$Q2"}]]
+16:X
+16:C
+19:X
+19:C
+0:{"t":{"t":{"s":"","h":49242,"c":"$Q1"},"h":{"r":["$","$3","h",{"children":[null,["$","$L11",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L13",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$c",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Categories — Nextly"}],["$","meta","1",{"name":"description","content":"All categories on Arakansas Trade Marketing."}],["$","link","2",{"rel":"canonical","href":"https://api.arkansastrademarketing.com/admin/categories"}],["$","meta","3",{"property":"og:title","content":"Categories"}],["$","meta","4",{"property":"og:description","content":"All categories on Arakansas Trade Marketing."}],["$","meta","5",{"property":"og:url","content":"https://api.arkansastrademarketing.com/admin/categories"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","8",{"name":"twitter:title","content":"Categories"}],["$","meta","9",{"name":"twitter:description","content":"All categories on Arakansas Trade Marketing."}],["$","link","10",{"rel":"icon","href":"/favicon.ico?favicon.35k9pu78uop64.ico","sizes":"32x32","type":"image/x-icon"}],["$","$L14","11",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@15","v":"$16","s":"$9"}},"a":"$@17","u":"$@18","b":"DJbQ5ndXey5hqOiPkdJ1p","r":"$19"}
+d:null
+18:false
+17:null
+7:"$undefined"
+15:"$undefined"
+e:"$undefined"

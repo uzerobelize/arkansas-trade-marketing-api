@@ -1,0 +1,26 @@
+3:"$Sreact.fragment"
+5:"/_next/static/chunks/00-f9varjmeiy.js"
+6:I[897367,["$5"],"OutletBoundary"]
+7:"$Sreact.suspense"
+c:"ViewportBoundary"
+d:I[897367,["$5"],"$c"]
+e:"MetadataBoundary"
+f:I[897367,["$5"],"$e"]
+10:I[27201,["$5"],"IconMark"]
+a:X
+a:C
+b:X
+b:300
+b:300
+b:C
+2:[["children",{"s":"__PAGE__","h":49282,"d":{"r":["$","$3","c",{"children":["$L4",[["$","script","script-0",{"src":"/_next/static/chunks/1h1-wlm-mtvs9.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0eduysue0uaob.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"p":"$@9","v":"$a","s":"$b"}}]]
+1:[["children",{"s":"(frontend)","h":49190,"c":"$Q2"}]]
+12:X
+12:C
+15:X
+15:C
+0:{"t":{"t":{"s":"","h":49242,"c":"$Q1"},"h":{"r":["$","$3","h",{"children":[null,["$","$Ld",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$Lf",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$7",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Nextly"}],["$","meta","1",{"name":"description","content":"A blog built with Nextly."}],["$","meta","2",{"property":"og:title","content":"Nextly"}],["$","meta","3",{"property":"og:description","content":"A blog built with Nextly."}],["$","meta","4",{"property":"og:image","content":"https://api.arkansastrademarketing.com/admin/opengraph-image?adb1f4a6992ac601"}],["$","meta","5",{"property":"og:image:type","content":"image/png"}],["$","meta","6",{"property":"og:image:width","content":"1200"}],["$","meta","7",{"property":"og:image:height","content":"630"}],["$","meta","8",{"property":"og:image:alt","content":"Site cover image"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Nextly"}],["$","meta","11",{"name":"twitter:description","content":"A blog built with Nextly."}],["$","meta","12",{"name":"twitter:image","content":"https://api.arkansastrademarketing.com/admin/opengraph-image?adb1f4a6992ac601"}],["$","meta","13",{"name":"twitter:image:alt","content":"Site cover image"}],["$","meta","14",{"name":"twitter:image:type","content":"image/png"}],["$","meta","15",{"name":"twitter:image:width","content":"1200"}],["$","meta","16",{"name":"twitter:image:height","content":"630"}],["$","link","17",{"rel":"icon","href":"/favicon.ico?favicon.35k9pu78uop64.ico","sizes":"32x32","type":"image/x-icon"}],["$","$L10","18",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@11","v":"$12","s":"$b"}},"a":"$@13","u":"$@14","b":"DJbQ5ndXey5hqOiPkdJ1p","r":"$15"}
+8:null
+14:false
+13:null
+11:"$undefined"

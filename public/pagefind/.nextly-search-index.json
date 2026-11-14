@@ -1,0 +1,19 @@
+{
+  "entries": [
+    "fragment",
+    "index",
+    "pagefind-component-ui.css",
+    "pagefind-component-ui.js",
+    "pagefind-entry.json",
+    "pagefind-highlight.js",
+    "pagefind-modular-ui.css",
+    "pagefind-modular-ui.js",
+    "pagefind-ui.css",
+    "pagefind-ui.js",
+    "pagefind-worker.js",
+    "pagefind.en_f9f823597c.pf_meta",
+    "pagefind.js",
+    "wasm.en.pagefind",
+    "wasm.unknown.pagefind"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</>; rel=preconnect; crossorigin=\"\", </_next/static/media/logo.0k5iiw50j8t8n.png>; rel=preload; as=\"image\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/authors/layout,_N_T_/(frontend)/authors/[slug]/layout,_N_T_/(frontend)/authors/[slug]/page,nextly:single:site-settings,nextly:single:navigation,nextly:categories"
+  },
+  "postponed": "3622:8[\"slug\"][1,{\"nextSegmentId\":4,\"rootFormatContext\":{\"insertionMode\":0,\"selectedValue\":null,\"tagScope\":0,\"viewTransition\":null},\"progressiveChunkSize\":12800,\"resumableState\":{\"idPrefix\":\"\",\"nextFormID\":0,\"streamingFormat\":0,\"instructions\":112,\"hasBody\":true,\"hasHtml\":true,\"unknownResources\":{},\"dnsResources\":{},\"connectResources\":{\"default\":{},\"anonymous\":{\"/\":null},\"credentials\":{}},\"imageResources\":{\"/_next/static/media/logo.0k5iiw50j8t8n.png\":[]},\"styleResources\":{\"/_next/static/chunks/2vn-dz6r83p0y.css\":null,\"/_next/static/chunks/0ioix9han-o2g.css\":null},\"scriptResources\":{\"/_next/static/chunks/0o_iu04f6t0e7.js\":null,\"/_next/static/chunks/3fus74q3gq13p.js\":null,\"/_next/static/chunks/13jwx93ue3ztq.js\":null,\"/_next/static/chunks/07v_h8cq-thdb.js\":null,\"/_next/static/chunks/turbopack-077hmtqrhcoji.js\":null,\"/_next/static/chunks/00-f9varjmeiy.js\":null,\"/_next/static/chunks/3e2n345jitsha.js\":null,\"/_next/static/chunks/2l0xys559awoe.js\":null,\"/_next/static/chunks/2dilv_3zjw8o6.js\":null,\"/_next/static/chunks/0g6bvflk997ui.js\":null,\"/_next/static/chunks/2h0cso6lnqto_.js\":null},\"moduleUnknownResources\":{},\"moduleScriptResources\":{\"/_next/static/chunks/0o_iu04f6t0e7.js\":null}},\"replayNodes\":[[\"sl\",0,[[\"Context\",0,[[\"Context\",0,[[\"ServerInsertedHTMLProvider\",0,[[\"Context\",0,[[\"il\",0,[[\"aW\",0,[[\"aV\",0,[[\"az\",0,[[\"io\",0,[[\"Fragment\",0,[[\"Context\",2,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"aW\",0,[[\"aV\",0,[[\"az\",0,[[\"as\",0,[[\"ai\",0,[[\"is\",\"/!KGZyb250ZW5kKQ/authors/$d$slug/__PAGE__/_head\",[[\"Fragment\",\"h\",[[\"__next_metadata_boundary__\",2,[[\"div\",0,[[\"Suspense\",0,[],0,[\"Suspense Fallback\",0,[],null],0]],null]],null]],null]],null],[\"__next_root_layout_boundary__\",1,[[\"Fragment\",\"c\",[[\"html\",1,[[\"body\",1,[[null,0,[[\"Activity\",\"(frontend)\",[[\"Context\",\"(frontend)\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"m\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[null,0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"div\",1,[[\"main\",2,[[null,0,[[\"Activity\",\"authors\",[[\"Context\",\"authors\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"m\",0,[[\"G\",0,[[\"Suspense\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"slug|d\",[[\"Context\",\"slug|d\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"Fragment\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"__PAGE__\",[[\"Context\",\"__PAGE__\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"Fragment\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"__next_outlet_boundary__\",2,[[\"Suspense\",0,[],3,[\"Suspense Fallback\",0,[],null],3]],null]],{\"0\":2}]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null,[\"Suspense Fallback\",0,[],null],1]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],\"replaySlots\":null}]eJzVVl1zmzgU/S88ux0+7ZCZPsQxYHmR3RCMLDV5EAgbYQFegzHQyX/fkdOmST9mOrt92RcPvjqgq3PPOfBZqZvqmCrXn5Vt2iSZcv35aaQkNMkutU8Pyla1xpapqSyJ49iwrK1mX5kqi6mqa9tYmyTJNjXUiTFhD8ro04Py6eHhQal5uROpvBrJn5K2fEcbXpXy3+MzsEy7RvTXz9DrVxDlcbSlok4fJWq2iO+skm3S3sr+XvGPe7bQDg/K46NsLy2bYy8vWipOqXKtwFnFF85NB3ZVtyprTr0oI17Uh544UQPylWgmoMh6gjBf8UXF5sE5GarW1yMTI+0ce+sT1u0G8DOPPZcTdJY4N/XcJvE6cakbUxHvxSksIiPyXA7yQ4FRN5CNWqf9okqKqAB5xek8UJM5HPu9Lb7e7xfLNr4HNSi6DBdRLXFrPTuQ8o77t4s28aLTPbJWZMPWGAG+KkgWz5diG6k1KEgbG4FIxEJgFECKrGPSgzHS1BqUyyo22Jp6UUOioCU6q8k9GJPCrRN9/XU9JMjtsZ4tsG6fXvX9lzJSGrqrletPvxyL8jhS6oaKVLk2VHWkNLxI64YWB+Vam9jmeGwYlqla5nvrajwZKWl34FJXpm6b9nii2+ZIOaYtFZzR5k39aaRktHa6g+AJb4JXmOZ4St8sOl8e+rxwTCkLqqr5SI+0WNIilf0/Po3+tWoT2qS76sjT+kW5VIgfJfsK96e0Khp2u/vw4cc5fNvrtwcwtuz/6QC+i42aN+m7Om0aXu7qXybHW9QfDI9EFypZW1mM1jIEpknhHjGyBryBu2i+yIi33oXI7akeqRRZpQwH5rll7ImTNB8QQRUbUUnnwQA8+wTmTGA+3ZMNEbFnn2MUndgtkOY8MC9yyGaZJ4U4M0+0MQdjsHd2uOha0k85Q6Jmt1ODboIKOJZI50Gd3psyNOpYZy3IDxNQiL0MlOVsZ5Lc6fGwawha9/heVeEMmH6475azmwYOUb6a3alwhvXl7GaQfZNC1AR9PSvo4Qzo/uB0/hDkEOEeF+Dsh26+QrBZzkiBe41Dz838cG9gPcrgkBgEAQNz7dKPX05PpJdBZ/cUsUNcuHXwZo/FdzjtEKNonW6m4hKeSMuIvm4T75nXRBdjySkcsAYHGWjsQOZBBfKqg7Obs3+7qAgSJZ3f8VXunOHspgZFoCWFq1J0CbsTQ13t3y60pJChDlq2mdax7u6T/urPnbcMKoY0HhfuIXajPr4FY8BtLfG6FqNg8AdwhjluYei0xMNnnGcCD7hZDmy/ulVVGEZ7P8w4ye8aHGYZDKEFEexXHuj8zfOzN3rXEv3q9JUbUtg5Rh1+dcYi1pdZ7O75qrC02DvXoHBr5gYilfy81JZZMg8OsW5+q5VBRuSL8gVD2tgLRLKX2nrF4fN5BHEWlpwXCRd7HO50OOCGzBhfSc0hrPrI0WEOGxI6JkSwI7PkTPJlcfHKF/4JCqbswlPgwPymX3K1g/dqB7W7Hs6qYTlU2vLeNGA+pV/u2+ON3NtV5d4L5+55fqHT+aEzRDNwXuXQWOVrzc+THroV395LDdk5RW797BV2YF6mYekzfpmb9JZKNkBq4+Ir+YIlKDhcvMgX9vau+klA/yyFfjuqDcv6n0Z1LKrdu21VNenxXZ/S40s8P46uxqaq/tf8zS8+efVh8juU6qb13lbNq2+UahP9SsJf03np708z+TRS0jI59ocmZdPqVLKbo2z789PT0z8XKNRt",
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ",
+    "/!KGZyb250ZW5kKQ/authors/$d$slug/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49216,
+    "slots": {
+      "children": {
+        "hints": 49184,
+        "slots": {
+          "children": {
+            "hints": 49216,
+            "slots": {
+              "children": {
+                "hints": 49248,
+                "slots": {
+                  "children": {
+                    "hints": 49312,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/db23344583d9b3a5149936992a30ce293219e6659e05762adfdda864d6c314d1/$/authors/[slug]",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(frontend)/authors/[slug]/page"
+    },
+    "isFallback": true
+  }
+}

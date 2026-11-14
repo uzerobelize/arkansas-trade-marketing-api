@@ -17,6 +17,10 @@ export const Homepage = defineSingle({
     text({ name: "hero_headline", required: true }),
     textarea({ name: "hero_subheadline" }),
     text({ name: "hero_cta_buttonText" }),
+    text({
+      name: "header_banner",
+      defaultValue: '<span>LITTLE ROCK METRO EXCLUSIVITY: Capped at 1 New Trade Operator / Month &bull;{" "}<span className="underline underline-offset-2 text-[#F9C846]">1 Territory Slot Remaining for Next Month</span></span>',
+    }),
 
     checkbox({ name: "showFeaturedPost", defaultValue: true }),
     text({ name: "featuredSectionTitle", defaultValue: "Featured" }),

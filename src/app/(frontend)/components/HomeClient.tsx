@@ -47,6 +47,7 @@ export interface HomePageContent {
   hero_headline?: string | null;
   hero_subheadline?: string | null;
   hero_cta_button_text?: string | null;
+  header_banner?: string | null;
 }
 
 interface HomeClientProps {
@@ -66,6 +67,9 @@ export function HomeClient({ content }: HomeClientProps) {
   const heroCtaButtonText =
     content?.hero_cta_button_text ||
     "Book Strategy Call";
+  const headerBanner =
+    content?.header_banner ||
+    '<span>LITTLE ROCK METRO EXCLUSIVITY: Capped at 1 New Trade Operator / Month &bull;{" "}<span className="underline underline-offset-2 text-[#F9C846]">1 Territory Slot Remaining for Next Month</span></span>'
 
   // Modal & Booking Flow State
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -217,13 +221,7 @@ export function HomeClient({ content }: HomeClientProps) {
       <div className="bg-[#002D3C] text-white font-bold text-xs md:text-sm py-2.5 px-4 text-center tracking-wide shadow-md relative z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
           <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#F96E46] animate-ping"></span>
-          <span>
-            LITTLE ROCK METRO EXCLUSIVITY: Capped at 1 New Trade Operator /
-            Month &bull;{" "}
-            <span className="underline underline-offset-2 text-[#F9C846]">
-              1 Territory Slot Remaining for Next Month
-            </span>
-          </span>
+          <span dangerouslySetInnerHTML={{__html: headerBanner}} />
         </div>
       </div>
 

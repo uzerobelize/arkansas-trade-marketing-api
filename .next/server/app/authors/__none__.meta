@@ -1,0 +1,47 @@
+{
+  "status": 404,
+  "headers": {
+    "link": "</>; rel=preconnect; crossorigin=\"\", </_next/static/media/logo.0k5iiw50j8t8n.png>; rel=preload; as=\"image\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/authors/layout,_N_T_/(frontend)/authors/[slug]/layout,_N_T_/(frontend)/authors/[slug]/page,_N_T_/authors/__none__,nextly:single:site-settings,nextly:single:navigation,nextly:categories"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ",
+    "/!KGZyb250ZW5kKQ/authors/$d$slug/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49216,
+    "slots": {
+      "children": {
+        "hints": 49184,
+        "slots": {
+          "children": {
+            "hints": 49216,
+            "slots": {
+              "children": {
+                "hints": 49248,
+                "slots": {
+                  "children": {
+                    "hints": 49312,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/db23344583d9b3a5149936992a30ce293219e6659e05762adfdda864d6c314d1/$/authors/__none__",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(frontend)/authors/[slug]/page"
+    },
+    "isFallback": false
+  }
+}

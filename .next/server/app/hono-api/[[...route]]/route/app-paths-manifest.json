@@ -1,0 +1,3 @@
+{
+  "/hono-api/[[...route]]/route": "app/hono-api/[[...route]]/route.js"
+}

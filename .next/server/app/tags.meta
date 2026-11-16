@@ -1,0 +1,42 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</>; rel=preconnect; crossorigin=\"\", </_next/static/media/logo.0k5iiw50j8t8n.png>; rel=preload; as=\"image\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/tags/layout,_N_T_/(frontend)/tags/page,_N_T_/tags,nextly:single:site-settings,nextly:single:navigation,nextly:categories,nextly:tags,nextly:posts"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ",
+    "/!KGZyb250ZW5kKQ/tags/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49216,
+    "slots": {
+      "children": {
+        "hints": 49184,
+        "slots": {
+          "children": {
+            "hints": 49216,
+            "slots": {
+              "children": {
+                "hints": 49312,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/4bf564d950c3bb53da79709d41f4c941352ae7aa14628373f4eb0727d960f312/$/tags",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(frontend)/tags/page"
+    },
+    "isFallback": false
+  }
+}

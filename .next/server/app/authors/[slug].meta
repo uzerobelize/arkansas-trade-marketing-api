@@ -1,0 +1,48 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</>; rel=preconnect; crossorigin=\"\", </_next/static/media/logo.0k5iiw50j8t8n.png>; rel=preload; as=\"image\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/authors/layout,_N_T_/(frontend)/authors/[slug]/layout,_N_T_/(frontend)/authors/[slug]/page,nextly:single:site-settings,nextly:single:navigation,nextly:categories"
+  },
+  "postponed": "3622:8[\"slug\"][1,{\"nextSegmentId\":4,\"rootFormatContext\":{\"insertionMode\":0,\"selectedValue\":null,\"tagScope\":0,\"viewTransition\":null},\"progressiveChunkSize\":12800,\"resumableState\":{\"idPrefix\":\"\",\"nextFormID\":0,\"streamingFormat\":0,\"instructions\":112,\"hasBody\":true,\"hasHtml\":true,\"unknownResources\":{},\"dnsResources\":{},\"connectResources\":{\"default\":{},\"anonymous\":{\"/\":null},\"credentials\":{}},\"imageResources\":{\"/_next/static/media/logo.0k5iiw50j8t8n.png\":[]},\"styleResources\":{\"/_next/static/chunks/3exi3usb6fs-l.css\":null,\"/_next/static/chunks/1o3fa0i9omr8a.css\":null},\"scriptResources\":{\"/_next/static/chunks/0o_iu04f6t0e7.js\":null,\"/_next/static/chunks/3fus74q3gq13p.js\":null,\"/_next/static/chunks/13jwx93ue3ztq.js\":null,\"/_next/static/chunks/07v_h8cq-thdb.js\":null,\"/_next/static/chunks/turbopack-077hmtqrhcoji.js\":null,\"/_next/static/chunks/00-f9varjmeiy.js\":null,\"/_next/static/chunks/3e2n345jitsha.js\":null,\"/_next/static/chunks/2l0xys559awoe.js\":null,\"/_next/static/chunks/0tr_b_ql1pyol.js\":null,\"/_next/static/chunks/0g6bvflk997ui.js\":null,\"/_next/static/chunks/2h0cso6lnqto_.js\":null},\"moduleUnknownResources\":{},\"moduleScriptResources\":{\"/_next/static/chunks/0o_iu04f6t0e7.js\":null}},\"replayNodes\":[[\"sl\",0,[[\"Context\",0,[[\"Context\",0,[[\"ServerInsertedHTMLProvider\",0,[[\"Context\",0,[[\"il\",0,[[\"aW\",0,[[\"aV\",0,[[\"az\",0,[[\"io\",0,[[\"Fragment\",0,[[\"Context\",2,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"Context\",0,[[\"aW\",0,[[\"aV\",0,[[\"az\",0,[[\"as\",0,[[\"ai\",0,[[\"is\",\"/!KGZyb250ZW5kKQ/authors/$d$slug/__PAGE__/_head\",[[\"Fragment\",\"h\",[[\"__next_metadata_boundary__\",2,[[\"div\",0,[[\"Suspense\",0,[],0,[\"Suspense Fallback\",0,[],null],0]],null]],null]],null]],null],[\"__next_root_layout_boundary__\",1,[[\"Fragment\",\"c\",[[\"html\",1,[[\"body\",1,[[null,0,[[\"Activity\",\"(frontend)\",[[\"Context\",\"(frontend)\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"m\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[null,0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"div\",1,[[\"main\",2,[[null,0,[[\"Activity\",\"authors\",[[\"Context\",\"authors\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"m\",0,[[\"G\",0,[[\"Suspense\",0,[[null,0,[[\"l\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"slug|d\",[[\"Context\",\"slug|d\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"Fragment\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[null,1,[[\"Activity\",\"__PAGE__\",[[\"Context\",\"__PAGE__\",[[null,2,[[\"Fragment\",0,[[\"E\",0,[[\"D\",0,[[\"Fragment\",0,[[\"n\",0,[[\"Fragment\",0,[[\"G\",0,[[\"Fragment\",0,[[null,0,[[\"Fragment\",0,[[\"x\",0,[[\"w\",0,[[\"F\",0,[[\"Context\",0,[[\"Fragment\",\"c\",[[\"__next_outlet_boundary__\",2,[[\"Suspense\",0,[],3,[\"Suspense Fallback\",0,[],null],3]],null]],{\"0\":2}]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null,[\"Suspense Fallback\",0,[],null],1]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],null]],\"replaySlots\":null}]eJzVVdlyozgU/Ree3V2sjnFVP8RmsTwIdzBGRokfxBIQFksZbAOp/PsUdjpLz3RV10xe+oUC6aB77zn3XD1xdVMeYm76xD3GTZhy06fnEReSML2s3T9wj7wQKBNeCiNFDAQhUBRZlB8jSZwEohIIaqio0mQsR8r4gRvdP3D3Dw8PXE2LhMXD22h4FOREE9LQshi+dldgEbcN66ZX6PQdhNuNHgmr492AymGdev53AvnErvyzzU7B2HvgdrshvbhoDt3wciLsGHNTDmolXeq3LUjKdlXUlJheik2vc012JBKkK9ZE1nyZB6LK4+1yjZGx/2mvJ6YqeWbKAuRtAjEqAnNDVzlOg4XNfuxvRC8Nc7tcI/sUUDDGuVGHoqfOk2/fuBHXkKTmpve/LJHbjbi6ISzmphLPj7iG5nHdkLzipsKNKk/Gk4kgybz0VZL4yYiL24oOGsmiKqvjG1GVR9whPhFGI9J8WH8ecSmp9bZiNKSN8w7THI7xh0395dDrxiEmkVOWzXdyILlN8njIf/c8+s8dEJImTsoDjevXLiCM/VP+d7jP0p010b/r8Bbr9wUY38h/pgA/WbCmTfyljpuGFkn9Sxd+RH2iEUOR8XijpAHa0BVdzsLcOPhI6f0tTLzFMsXmJnGR0RHR4wlSCkDPNDKNIjDZEa/BGDCnDCSvIAunB6Z6BIuI+XS2x1vMAlM9B8g7RnNQg8KuItPT8dbOwpydI5NdDAr2euLn7Ql3MxohVkfzmUS2Tgl0hcULp47XMrXmyzoQoxPIqhuQsz3ISmpriYwzvfP7pMFo0/lrnocakC1339rabQN7L1tpdzzUfNHWbvshb5yzGqMftYIOakC0er21eieDyO/8HJwt18hWCDa2hnO/Eyg0jdRy95IveinsQwkjIPlUuORjFbMj7kANcrUjKKqC3KidDzGWP+GEahhe8XbGhhoIElIsbk6heeU1FNl44BT2vgD7TQ2KqMILpwRZ2ULt9mzNlyVGrCCLO7rK9DPUbmuQO0KYGzxB6hFk1TFCbW3Nl0KYn4caT9F2VgeisQ+7yefVWzhlhAQa5EYVGF4XzMEYUFUIzfbkI6e3enCGmX+Crn7Cpn/2s5T5vd/YfbRfzXkeut7eclOKs7vGd9MUulCBCHYrE7TW9nr2VmxPWJwcf3CDczXzUeu/qzEPRDsNjD1d5YoQmOca5EYdGQ6LB35e1+w0XDhVIMpva4WT4uFiecXgU2A6LNwPvfWOw2s9DOtLZdALu8u97yYi7P0GaxFdDT2HfN5Cuggz2GBXlyGCLdbCM87s/OKVF/4xcmbRhSdHh9ltZ1O+hWu+hcJdB7Wyt/tSsNeyBLMZeflv72+H2AY/xF7qd1f9XL21XL33NHBeZVBaZRvBysIOGiV9XA89pGYEGfXVK1EVmangDz6jF90Gb/F4C4beuPiKIOWAkVNdvEiX6uNd+euL8sMU+u1RLUj8+M8c1QErky+PZdnEhy9dTA6v43k3moxlnv+/8ze7+OSvN75/h9KbsfxVlpQ3RoUbcTKg37N5Se+ziXwecXERHrqqiaNZeSyi28OQ9dPz8/PfzTOP9g==",
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ",
+    "/!KGZyb250ZW5kKQ/authors/$d$slug/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49216,
+    "slots": {
+      "children": {
+        "hints": 49184,
+        "slots": {
+          "children": {
+            "hints": 49216,
+            "slots": {
+              "children": {
+                "hints": 49248,
+                "slots": {
+                  "children": {
+                    "hints": 49312,
+                    "slots": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/db23344583d9b3a5149936992a30ce293219e6659e05762adfdda864d6c314d1/$/authors/[slug]",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(frontend)/authors/[slug]/page"
+    },
+    "isFallback": true
+  }
+}

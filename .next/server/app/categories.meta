@@ -1,0 +1,42 @@
+{
+  "status": 200,
+  "headers": {
+    "link": "</>; rel=preconnect; crossorigin=\"\", </_next/static/media/logo.0k5iiw50j8t8n.png>; rel=preload; as=\"image\"",
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(frontend)/layout,_N_T_/(frontend)/categories/layout,_N_T_/(frontend)/categories/page,_N_T_/categories,nextly:single:site-settings,nextly:single:navigation,nextly:categories,nextly:posts"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KGZyb250ZW5kKQ",
+    "/!KGZyb250ZW5kKQ/categories/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 49216,
+    "slots": {
+      "children": {
+        "hints": 49184,
+        "slots": {
+          "children": {
+            "hints": 49216,
+            "slots": {
+              "children": {
+                "hints": 49312,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/0e4ac625238984fc8698efe1201222f90a02fe90748466ba43288971df1e209a/$/categories",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/(frontend)/categories/page"
+    },
+    "isFallback": false
+  }
+}

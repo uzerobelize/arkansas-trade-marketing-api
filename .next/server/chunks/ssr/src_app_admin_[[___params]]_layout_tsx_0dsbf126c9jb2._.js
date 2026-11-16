@@ -1,0 +1,3 @@
+module.exports=[595307,a=>a.a(async(b,c)=>{try{var d=a.i(907997),e=a.i(843405),f=a.i(800717),g=a.i(138216),h=a.i(324656),i=b([g,h]);[g,h]=i.then?(await i)():i;let k=(0,g.getBrandingCss)(h.f.admin?.branding);async function j({children:a}){return await (0,e.connection)(),a}a.s(["default",0,function({children:a}){return(0,d.jsxs)(d.Fragment,{children:[k&&(0,d.jsx)("style",{dangerouslySetInnerHTML:{__html:k}}),(0,d.jsx)(f.Suspense,{fallback:null,children:(0,d.jsx)(j,{children:a})})]})}]),c()}catch(a){c(a)}},!1),51410,function(a){a.n(a.i(595307))}];
+
+//# sourceMappingURL=src_app_admin_%5B%5B___params%5D%5D_layout_tsx_0dsbf126c9jb2._.js.map

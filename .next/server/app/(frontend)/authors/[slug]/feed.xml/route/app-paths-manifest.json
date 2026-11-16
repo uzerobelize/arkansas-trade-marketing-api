@@ -1,0 +1,3 @@
+{
+  "/(frontend)/authors/[slug]/feed.xml/route": "app/(frontend)/authors/[slug]/feed.xml/route.js"
+}

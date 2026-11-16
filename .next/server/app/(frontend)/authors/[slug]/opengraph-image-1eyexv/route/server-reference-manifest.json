@@ -1,0 +1,15 @@
+{
+  "node": {
+    "f01b5803cd52b11b55424fd328b25b19c593864d56": {
+      "workers": {
+        "app/(frontend)/authors/[slug]/opengraph-image-1eyexv/route": {
+          "moduleId": 937996,
+          "async": true
+        }
+      },
+      "exportedName": "$$RSC_SERVER_CACHE_0",
+      "filename": "src/nextly/cached-read.ts"
+    }
+  },
+  "edge": {}
+}
